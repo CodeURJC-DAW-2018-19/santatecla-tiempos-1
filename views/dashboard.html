@@ -11,14 +11,16 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
 
     <!-- CSS Files -->
     <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> </head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
@@ -30,6 +32,9 @@
         width: 100%;
     }
 </style>
+<script>
+
+</script>
 
 <body class="">
     <div class="wrapper   ">
@@ -39,7 +44,7 @@
                 <ul class="nav">
                     <li id="nav_category" class="nav-item active">
                         <a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">
-                            collections_bookmark
+                                collections_bookmark
                             </i>
                             <p>Categorías</p>
                         </a>
@@ -70,7 +75,8 @@
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <button class="btn btn-round" data-toggle="modal" data-target="#loginModal"> Login <i class="material-icons">assignment</i> </button>
+                                <button class="btn btn-round" data-toggle="modal" data-target="#loginModal"> Login <i
+                                        class="material-icons">assignment</i> </button>
                             </li>
                         </ul>
                     </div>
@@ -80,59 +86,68 @@
             <!-- CATEGORY -->
             <div id="category" class="content">
                 <div class="container-fluid">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-tabs card-header-primary">
-                                        <div class="nav-tabs-navigation">
-                                            <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">CATEGORÍAS</span> </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="profile">
-                                                <table class="table table-hover table-striped">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="periodIndex"> 1 </td>
-                                                            <td class="periodContent"> Categoría 1</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 2 </td>
-                                                            <td class="periodContent">Categoría 2</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 3 </td>
-                                                            <td class="periodContent">Categoría 3 </td>
-                                                            <td class="td-actions text-right periodButtons" style="align-content: right !important">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 4 </td>
-                                                            <td class="periodContent">Categoría 4</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newCategoryModal"> <i class="material-icons">add</i> </button>
-                                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">CATEGORÍAS</span> </div>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="profile">
+                                        <table class="table table-hover table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="periodIndex"> 1 </td>
+                                                    <td class="periodContent"> Categoría 1</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 2 </td>
+                                                    <td class="periodContent">Categoría 2</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 3 </td>
+                                                    <td class="periodContent">Categoría 3 </td>
+                                                    <td class="td-actions text-right periodButtons" style="align-content: right !important">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 4 </td>
+                                                    <td class="periodContent">Categoría 4</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal"
+                                    data-target="#newCategoryModal"> <i class="material-icons">add</i> </button>
+                            </div>
                         </div>
+                    </div>
+                </div>
             </div>
             <!-- END CATEGORY-->
             <!--TIME-->
@@ -144,7 +159,8 @@
                                 <div class="card">
                                     <div class="card-header card-header-tabs card-header-primary">
                                         <div class="nav-tabs-navigation">
-                                            <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">INTERVALOS</span> </div>
+                                            <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">INTERVALOS</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -156,39 +172,56 @@
                                                             <td class="periodIndex"> 1 </td>
                                                             <td class="periodContent"> Intervalo 1</td>
                                                             <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
+                                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                                    class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove"
+                                                                    class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="periodIndex"> 2 </td>
                                                             <td class="periodContent">Intervalo 2</td>
                                                             <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
+                                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                                    class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove"
+                                                                    class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="periodIndex"> 3 </td>
                                                             <td class="periodContent">Intervalo 3 </td>
                                                             <td class="td-actions text-right periodButtons" style="align-content: right !important">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
+                                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                                    class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove"
+                                                                    class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="periodIndex"> 4 </td>
                                                             <td class="periodContent">Intervalo 4</td>
                                                             <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
+                                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                                    class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove"
+                                                                    class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newPeriodModal"> <i class="material-icons">add</i> </button>
+                                        <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal"
+                                            data-target="#newPeriodModal"> <i class="material-icons">add</i> </button>
                                     </div>
                                 </div>
                             </div>
@@ -199,61 +232,70 @@
             <!--END TIME-->
             <!--EVENT-->
             <div id="event" style="display:none" class="content">
-               
+
                 <div class="container-fluid">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-tabs card-header-primary">
-                                        <div class="nav-tabs-navigation">
-                                            <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">EVENTOS</span> </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="profile">
-                                                <table class="table table-hover table-striped">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="periodIndex"> 1 </td>
-                                                            <td class="periodContent"> Evento 1</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 2 </td>
-                                                            <td class="periodContent">Evento 2</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 3 </td>
-                                                            <td class="periodContent">Evento 3 </td>
-                                                            <td class="td-actions text-right periodButtons" style="align-content: right !important">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="periodIndex"> 4 </td>
-                                                            <td class="periodContent">Evento 4</td>
-                                                            <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"> <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm"> <i class="material-icons">delete</i> </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newEventModal"> <i class="material-icons">add</i> </button>
-                                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper"> <span class="nav-tabs-title">EVENTOS</span> </div>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="profile">
+                                        <table class="table table-hover table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="periodIndex"> 1 </td>
+                                                    <td class="periodContent"> Evento 1</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 2 </td>
+                                                    <td class="periodContent">Evento 2</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 3 </td>
+                                                    <td class="periodContent">Evento 3 </td>
+                                                    <td class="td-actions text-right periodButtons" style="align-content: right !important">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="periodIndex"> 4 </td>
+                                                    <td class="periodContent">Evento 4</td>
+                                                    <td class="td-actions text-right periodButtons">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                            <i class="material-icons">edit</i> </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal"
+                                    data-target="#newEventModal"> <i class="material-icons">add</i> </button>
+                            </div>
                         </div>
+                    </div>
+                </div>
             </div>
             <!--END TIME-->
             <!--VIEW-->
@@ -265,8 +307,8 @@
                     </form>
                     <div>
                         <h3>
-                        <p>NOMBRE</p>
-                        
+                            <p>NOMBRE</p>
+
                             <li>Intervalo X.1</li>
                             <li>Intervalo X.2</li>
                             <ul>
@@ -274,8 +316,9 @@
                                 <li>Intervalo X.2.2</li>
                                 <li>Intervalo X.2.3</li>
                             </ul>
-                        
-                    </h3> </div>
+
+                        </h3>
+                    </div>
                     <div>
                         <li>Fecha Inicio</li>
                         <li>Fecha Fin
@@ -302,46 +345,54 @@
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
                             <div class="card-header card-header-primary text-center" id="headerLogin">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="material-icons">clear</i> </button>
-                                <h4 class="card-title">Log in</h4>
-                                <div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-facebook-square"></i> </a>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="material-icons">clear</i>
+                                </button>
+                                <h4 class="card-title">LOG IN</h4>
+                             <!---<div class="social-line">
+                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-facebook-square"></i>
+                                    </a>
                                     <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-twitter"></i>
                                         <div class="ripple-container"></div>
                                     </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-google-plus"></i> </a>
-                                </div>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-google-plus"></i>
+                                    </a>
+                                </div>-->
                             </div>
                         </div>
                         <div class="modal-body">
                             <form class="form" method="" action="">
-                                <p class="description text-center">Or Be Classical</p>
                                 <div class="card-body">
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"> <i class="material-icons">face</i> </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="First Name..."> </div>
+                                            <input type="text" class="form-control" placeholder="First Name...">
+                                        </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text"> <i class="material-icons">email</i> </div>
+                                                <div class="input-group-text"> <i class="material-icons">email</i>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Email..."> </div>
+                                            <input type="text" class="form-control" placeholder="Email...">
+                                        </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text"> <i class="material-icons">lock_outline</i> </div>
+                                                <div class="input-group-text"> <i class="material-icons">lock_outline</i>
+                                                </div>
                                             </div>
-                                            <input type="password" placeholder="Password..." class="form-control"> </div>
+                                            <input type="password" placeholder="Password..." class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer justify-content-center"> <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a> </div>
+                        <div class="modal-footer justify-content-center"> <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get
+                                Started</a> </div>
                     </div>
                 </div>
             </div>
@@ -352,134 +403,147 @@
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
-                            <h5 class="modal-title card-title" >Nuevo Intervalo</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i> </button>
+                            <h5 class="modal-title card-title">Nuevo Intervalo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i>
+                            </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/action_page.php">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col"> Nombre:
-                                            <br>
-                                            <input type="text" name="firstname" value="Nombre" style="width: 100%"> </div>
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <input type="email" class="form-control" id="inputNameNewPeriod" placeholder="Nombre">
                                     </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col"> Fecha de Inicio:
-                                            <br>
-                                            <input type="date" name="start" style="width: 100%">
-                                        </div>
-                                        <div class="col"> Fecha de Inicio:
-                                            <br>
-                                            <input type="date" name="end" style="width: 100%">
-                                        </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control datetimepicker" value="" placeholder="Fecha de Inicio">
                                     </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col">
-                                        </div>
-                                        <div class="col"> <input type="submit" value="Aceptar" style="float: right">
-                                        </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control datetimepicker" value="" placeholder="Fecha Fin">
                                     </div>
+
                                 </div>
+                                <button type="submit" class="btn btn-primary">ACEPTAR</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--Popup newCategory-->
         <div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-signup" role="document">
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
-                            <h5 class="modal-title card-title" >Nueva Categoría</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i> </button>
+                            <h5 class="modal-title card-title">Nueva Categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i>
+                            </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/action_page.php">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col"> Nombre:
-                                            <br>
-                                            <input type="text" name="firstname" value="Nombre" style="width: 100%"> </div>
-                                    </div>
-                                    <br>
-                                    
-                                    <div class="row">
-                                        <div class="col">
-                                        </div>
-                                        <div class="col"> <input type="submit" value="Aceptar" style="float: right">
-                                        </div>
-                                    </div>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
                                 </div>
+                                <button type="submit" class="btn btn-primary">ACEPTAR</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-signup" role="document">
+        <!--Popup newEvent-->
+        <div class="modal fade bd-example-modal-lg" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
-                            <h5 class="modal-title card-title" >Nuevo Evento</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i> </button>
+                            <h5 class="modal-title card-title">Nuevo Evento</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="material-icons">clear</i>
+                            </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/action_page.php">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col"> Nombre:
-                                            <br>
-                                            <input type="text" name="firstname" value="Nombre" style="width: 100%"> </div>
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-9">
+                                        <div class="form-group col-md-12">
+                                            <input type="email" class="form-control" id="inputNameNewEvent" placeholder="Nombre">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input type="text" class="form-control datetimepicker" value="" placeholder="Fecha">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input type="text" class="form-control" id="inputURLPhotoNewEvent"
+                                                placeholder="URL Foto">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input type="text" class="form-control" id="inputURLWikiNewEvent"
+                                                placeholder="URL Wiki">
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col"> Fecha:
-                                            <br>
-                                            <input type="date" name="date" style="width: 30%">
+                                    <div class="col-md-3 fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-raised">
+                                            <img style="width: 160px" src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+                                                alt="...">
                                         </div>
-                                        
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col"> URL Foto:
-                                            <br>
-                                            <input type="date" name="photo" style="width: 100%">
-                                        </div>
-                                        
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col"> URL Wiki:
-                                            <br>
-                                            <input type="date" name="date" style="width: 100%">
-                                        </div>
-                                        
-                                    </div>
-                                    <br>
-                                    <div class="row">
-
-                                        <div class="col"> <input type="submit" value="Categorías">
-                                        </div>
-                                        <div class="col">
-                                        </div>
-                                        <div class="col"> <input type="submit" value="Aceptar" style="float: right">
-                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                        <!-- <div>
+                                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="..." />
+                                            </span>
+                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
+                                                data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>-->
                                     </div>
                                 </div>
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCategory"
+                                    aria-expanded="false" aria-controls="collapseCategory" style="opacity: 0.8; margin: auto">
+                                    Relación con Categorías
+                                </button>
+
+                                <div class="collapse" id="collapseCategory">
+                                    <div class="form-check text-center">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="">Categoría 1
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <br><br>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="">Categoría 2
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <br><br>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="">Categoría 3
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <br><br>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="">Categoría 4
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div><br>
+                                <button type="submit" class="btn btn-primary">ACEPTAR</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <!--END POPUPS-->
     <!--   Core JS Files   -->
-    <script src="../assets/js/controller.js"></script>
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
@@ -522,8 +586,10 @@
     <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/js/demo.js"></script>
+    <script src="../assets/js/controller.js"></script>
     <script>
         $(document).ready(function () {
+
             $().ready(function () {
                 $sidebar = $('.sidebar');
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -656,6 +722,7 @@
             // Javascript method's body can be found in assets/js/demos.js
             md.initDashboardPageCharts();
         });
+
     </script>
 </body>
 
