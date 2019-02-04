@@ -8,6 +8,7 @@
 | *Miguel Torrijos*       | m.torrijos@alumnos.urjc.es    | [MiguelTG35](https://github.com/migueltg35)          |
 | *María Delgado Eiriz*   | m.delgadoei@alumnos.urjc.es   | [MariaDelgadoEiriz2](https://github.com/mariadelgadoeiriz2)  |
 | *Omar Khanji Dobosh*    | o.khanji.2016@alumnos.urjc.es | [khenji55](https://github.com/khenji55)            |
+| *Álvaro Orbaneja Gómez*    | a.orbaneja@alumnos.urjc.es | [aorbaneja](https://github.com/aorbaneja)            |
 
 
 # Imágenes
