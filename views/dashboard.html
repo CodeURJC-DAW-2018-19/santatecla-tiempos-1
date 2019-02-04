@@ -6,11 +6,13 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title> Material Dashboard by Creative Tim </title>
+    <title>Gestor de Tiempos</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     <!-- CSS Files -->
     <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -20,6 +22,15 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
+<style>
+    #headerLogin{
+        border-radius: 3px;
+        margin-top: -64px;
+        padding: 16px;
+        width: 100%;
+    }
+</style>
+
 <body class="">
     <div class="wrapper   ">
         <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -27,22 +38,24 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li id="nav_category" class="nav-item active">
-                        <a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">dashboard</i>
+                        <a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">
+                            collections_bookmark
+                            </i>
                             <p>Categorías</p>
                         </a>
                     </li>
                     <li id="nav_event" class="nav-item ">
-                        <a class="nav-link" href="#" onclick="goTo('event')"> <i class="material-icons">person</i>
+                        <a class="nav-link" href="#" onclick="goTo('event')"> <i class="material-icons">event</i>
                             <p>Eventos</p>
                         </a>
                     </li>
                     <li id="nav_time" class="nav-item ">
-                        <a class="nav-link" href="#" onclick="goTo('time')"> <i class="material-icons">content_paste</i>
+                        <a class="nav-link" href="#" onclick="goTo('time')"> <i class="material-icons">timeline</i>
                             <p>Tiempo</p>
                         </a>
                     </li>
                     <li id="nav_view" class="nav-item ">
-                        <a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">content_paste</i>
+                        <a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">timeline</i>
                             <p>Vista Intervalo</p>
                         </a>
                     </li>
@@ -288,15 +301,15 @@
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
-                            <div class="card-header card-header-primary text-center">
+                            <div class="card-header card-header-primary text-center" id="headerLogin">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="material-icons">clear</i> </button>
                                 <h4 class="card-title">Log in</h4>
                                 <div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fa fa-facebook-square"></i> </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fa fa-twitter"></i>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-facebook-square"></i> </a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-twitter"></i>
                                         <div class="ripple-container"></div>
                                     </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fa fa-google-plus"></i> </a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-google-plus"></i> </a>
                                 </div>
                             </div>
                         </div>
