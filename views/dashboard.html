@@ -7,16 +7,19 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title> Material Dashboard by Creative Tim </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'
+    />
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+    />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
-    <script src="../assets/js/controller.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> </head>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
 <body class="">
     <div class="wrapper   ">
@@ -25,17 +28,20 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li id="nav_category" class="nav-item active">
-                        <a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">dashboard</i>
+                        <a class="nav-link" href="#" onclick="goTo('category')">
+                            <i class="material-icons">dashboard</i>
                             <p>Categorías</p>
                         </a>
                     </li>
                     <li id="nav_event" class="nav-item ">
-                        <a class="nav-link" href="#" onclick="goTo('event')"> <i class="material-icons">person</i>
+                        <a class="nav-link" href="#" onclick="goTo('event')">
+                            <i class="material-icons">person</i>
                             <p>Eventos</p>
                         </a>
                     </li>
                     <li id="nav_time" class="nav-item ">
-                        <a class="nav-link" href="#" onclick="goTo('time')"> <i class="material-icons">content_paste</i>
+                        <a class="nav-link" href="#" onclick="goTo('time')">
+                            <i class="material-icons">content_paste</i>
                             <p>Tiempo</p>
                         </a>
                     </li>
@@ -46,11 +52,14 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
-                    <div class="navbar-wrapper"> <a class="navbar-brand" href="#pablo">Dashboard</a> </div>
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="#pablo">Dashboard</a>
+                    </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" aria-haspopup="true"> <i class="material-icons">person</i>Login/Logout </a>
+                                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" aria-haspopup="true">
+                                    <i class="material-icons">person</i>Login/Logout </a>
                             </li>
                         </ul>
                     </div>
@@ -59,33 +68,174 @@
             <!-- End Navbar -->
             <!-- CATEGORY -->
             <div id="category" class="content">
-                <div class="search-container">
-                    <form action="/action_page.php">
-                        <input class="w3-round-large" type="text" placeholder="Buscar una categoría..." name="search">
-                        <button class="w3-round-large" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <div class="w3-panel w3-grey w3-round-large">
-                    <div class="w3-panel w3-blue-grey w3-round-large">
-                        <p>Categoría 1</p>
+                <div class="container-fluid">
+                    <div class="search-container">
+                        <form action="/action_page.php">
+                            <input class="w3-round-large" type="text" placeholder="Buscar una categoría..." name="search">
+                            <button class="w3-round-large" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
                     </div>
-                    <div class="w3-panel w3-blue-grey w3-round-large">
-                        <p>Categoría 2</p>
+                    <div class="w3-panel w3-grey w3-round-large">
+                        <div class="w3-panel w3-blue-grey w3-round-large">
+                            <p>Categoría 1</p>
+                        </div>
+                        <div class="w3-panel w3-blue-grey w3-round-large">
+                            <p>Categoría 2</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- END CATEGORY-->
-            <!--EVENTS-->
-            <div id="time" style="display:none" class="content">
-                <div class="container-fluid"> ESTA ES LA PESTAÑA DE TIEMPOS/INTERVALOS </div>
-            </div>
-            <!--END EVENTS-->
             <!--TIME-->
+            <div id="time" style="display:none" class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-tabs card-header-primary">
+                                        <div class="nav-tabs-navigation">
+                                            <div class="nav-tabs-wrapper">
+                                                <span class="nav-tabs-title">INTERVALOS</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="profile">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input class="form-check-input" type="checkbox" value="" checked>
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                                            <td class="td-actions text-right">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                    <i class="material-icons">close</i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input class="form-check-input" type="checkbox" value="">
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                                            <td class="td-actions text-right">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                    <i class="material-icons">close</i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input class="form-check-input" type="checkbox" value="">
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Flooded: One year later, assessing what was lost and what was
+                                                                found when a ravaging rain swept through metro Detroit
+                                                            </td>
+                                                            <td class="td-actions text-right">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                    <i class="material-icons">close</i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input class="form-check-input" type="checkbox" value="" checked>
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                                            <td class="td-actions text-right">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                    <i class="material-icons">close</i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <a id="btn-abrir-popup" href="#btn-abrir-popup">
+                                            <i class="material-icons">add_circle</i>
+                                        </a>
+                                      <!--  <button id="btn-abrir-popup" class="btn-abrir-popup">Abrir Ventana Emergente</button>
+                                        <div class="overlay" id="overlay">
+                                                <div class="popup" id="popup">
+                                                    <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                    <h3>SUSCRIBETE</h3>
+                                                    <h4>y recibe un cupon de descuento.</h4>
+                                                    <form action="">
+                                                        <div class="contenedor-inputs">
+                                                            <input type="text" placeholder="Nombre">
+                                                            <input type="email" placeholder="Correo">
+                                                        </div>
+                                                        <input type="submit" class="btn-submit" value="Suscribirse">
+                                                    </form>
+                                                </div>
+                                            </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <!--END TIME-->
+            <!--EVENT-->
             <div id="event" style="display:none" class="content">
                 <div class="search-container">
                     <form action="/action_page.php">
                         <input class="w3-round-large" type="text" placeholder="Buscar un evento..." name="search">
-                        <button class="w3-round-large" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="w3-round-large" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </form>
                 </div>
                 <div class="w3-panel w3-grey w3-round-large">
@@ -97,10 +247,13 @@
                     </div>
                 </div>
             </div>
+
             <!--END TIME-->
         </div>
     </div>
     <!--   Core JS Files   -->
+    <script src="../assets/js/controller.js"></script>
+
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
