@@ -18,6 +18,8 @@
     <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> </head>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
@@ -106,42 +108,14 @@
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="profile">
-                                                <table class="table">
+                                                <table class="table table-hover table-striped">
                                                     <tbody>
                                                         <tr>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                                        <span class="form-check-sign">
-                                                                            <span class="check"></span>
-                                                                        </span>
-                                                                    </label>
-                                                                </div>
+                                                            <td class="periodIndex">
+                                                                1
                                                             </td>
-                                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                            <td class="td-actions text-right">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                                    <i class="material-icons">edit</i>
-                                                                </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                                    <i class="material-icons-two-tones">delete</i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox" value="">
-                                                                        <span class="form-check-sign">
-                                                                            <span class="check"></span>
-                                                                        </span>
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                            <td class="td-actions text-right">
+                                                            <td class="periodContent"> Intervalo 1</td>
+                                                            <td class="td-actions text-right periodButtons">
                                                                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                                                                     <i class="material-icons">edit</i>
                                                                 </button>
@@ -151,20 +125,11 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox" value="">
-                                                                        <span class="form-check-sign">
-                                                                            <span class="check"></span>
-                                                                        </span>
-                                                                    </label>
-                                                                </div>
+                                                            <td class="periodIndex">
+                                                                2
                                                             </td>
-                                                            <td>Flooded: One year later, assessing what was lost and what was
-                                                                found when a ravaging rain swept through metro Detroit
-                                                            </td>
-                                                            <td class="td-actions text-right">
+                                                            <td class="periodContent">Intervalo 2</td>
+                                                            <td class="td-actions text-right periodButtons">
                                                                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                                                                     <i class="material-icons">edit</i>
                                                                 </button>
@@ -174,18 +139,26 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                                        <span class="form-check-sign">
-                                                                            <span class="check"></span>
-                                                                        </span>
-                                                                    </label>
-                                                                </div>
+                                                            <td class="periodIndex">
+                                                                3
                                                             </td>
-                                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                                            <td class="td-actions text-right">
+                                                            <td class="periodContent">Intervalo 3
+                                                            </td>
+                                                            <td class="td-actions text-right periodButtons" style="align-content: right !important">
+                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="periodIndex">
+                                                                4
+                                                            </td>
+                                                            <td class="periodContent">Intervalo 4</td>
+                                                            <td class="td-actions text-right periodButtons">
                                                                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                                                                     <i class="material-icons">edit</i>
                                                                 </button>
@@ -198,25 +171,149 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <button id="btn-open-popup" class="btn btn-primary btn-fab btn-fab btn-round">
+                                        <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#signupModal">
                                             <i class="material-icons">add</i>
-                                          </button>                                       
-                                        <!--<div class="overlay" id="overlay">
-                                                <div class="popup" id="popup">
-                                                    <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup">
-                                                        <i class="fas fa-times"></i>
-                                                    </a>
-                                                    <h3>SUSCRIBETE</h3>
-                                                    <h4>y recibe un cupon de descuento.</h4>
-                                                    <form action="">
-                                                        <div class="contenedor-inputs">
-                                                            <input type="text" placeholder="Nombre">
-                                                            <input type="email" placeholder="Correo">
+                                        </button>
+
+                                        
+
+                                        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-signup" role="document">
+                                                <div class="modal-content">
+                                                    <div class="card card-signup card-plain">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title card-title">Register</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i class="material-icons">clear</i>
+                                                            </button>
                                                         </div>
-                                                        <input type="submit" class="btn-submit" value="Suscribirse">
-                                                    </form>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-5 ml-auto">
+                                                                    <div class="info info-horizontal">
+                                                                        <div class="icon icon-rose">
+                                                                            <i class="material-icons">timeline</i>
+                                                                        </div>
+                                                                        <div class="description">
+                                                                            <h4 class="info-title">Marketing</h4>
+                                                                            <p class="description">
+                                                                                We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="info info-horizontal">
+                                                                        <div class="icon icon-primary">
+                                                                            <i class="material-icons">code</i>
+                                                                        </div>
+                                                                        <div class="description">
+                                                                            <h4 class="info-title">Fully Coded in HTML5</h4>
+                                                                            <p class="description">
+                                                                                We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="info info-horizontal">
+                                                                        <div class="icon icon-info">
+                                                                            <i class="material-icons">group</i>
+                                                                        </div>
+                                                                        <div class="description">
+                                                                            <h4 class="info-title">Built Audience</h4>
+                                                                            <p class="description">
+                                                                                There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-5 mr-auto">
+                                                                    <div class="social text-center">
+                                                                        <button class="btn btn-just-icon btn-round btn-twitter">
+                                                                            <i class="fab fa-twitter"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-just-icon btn-round btn-dribbble">
+                                                                            <i class="fab fa-dribbble"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-just-icon btn-round btn-facebook">
+                                                                            <i class="fab fa-facebook"> </i>
+                                                                        </button>
+                                                                        <h4> or be classical </h4>
+                                                                    </div>
+
+                                                                    <form class="form" method="" action="">
+                                                                        <div class="card-body">
+                                                                            <div class="form-group">
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <div class="input-group-text">
+                                                                                            <i class="material-icons">face</i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <input type="text" class="form-control" placeholder="First Name...">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <div class="input-group-text">
+                                                                                            <i class="material-icons">email</i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <input type="text" class="form-control" placeholder="Email...">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <div class="input-group-text">
+                                                                                            <i class="material-icons">lock_outline</i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <input type="password" placeholder="Password..." class="form-control" />
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label">
+                                                                                    <input class="form-check-input" type="checkbox" value="" checked>
+                                                                                    <span class="form-check-sign">
+                                                                                        <span class="check"></span>
+                                                                                    </span>
+                                                                                    I agree to the
+                                                                                    <a href="#something">terms and conditions</a>.
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer justify-content-center">
+                                                                            <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="overlay" id="overlay">
+                                            <div class="popup" id="popup">
+                                                <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                                <h3>SUSCRIBETE</h3>
+                                                <h4>y recibe un cupon de descuento.</h4>
+                                                <form action="">
+                                                    <div class="contenedor-inputs">
+                                                        <input type="text" placeholder="Nombre">
+                                                        <input type="email" placeholder="Correo">
+                                                    </div>
+                                                    <input type="submit" class="btn-submit" value="Suscribirse">
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +322,7 @@
 
                 </div>
             </div>
-            
+
 
             <!--END TIME-->
             <!--EVENT-->
@@ -252,8 +349,8 @@
                         <a href="javascript:abrir('pagina.html')">Crear nuevo Evento</a>
                     </div>
                     <script>
-                        function popup(url) { 
-                            open('page.html','','top=300,left=300,width=300,height=300') ;
+                        function popup(url) {
+                            open('page.html', '', 'top=300,left=300,width=300,height=300');
                         }
                     </script>
                 </div>
