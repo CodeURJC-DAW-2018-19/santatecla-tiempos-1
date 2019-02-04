@@ -48,6 +48,12 @@
                             <p>Tiempo</p>
                         </a>
                     </li>
+                    <li id="nav_view" class="nav-item ">
+                        <a class="nav-link" href="#" onclick="goTo('view')">
+                            <i class="material-icons">content_paste</i>
+                            <p>Vista Intervalo</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -220,6 +226,48 @@
             </div>
 
             <!--END TIME-->
+            <!--VIEW-->
+            <div id="view" style="display:none" class="content">
+              <div class="search-container">
+                    <form action="/action_page.php">
+                        <input class="w3-round-large" type="text" placeholder="Buscar un evento..." name="search">
+                        <button class="w3-round-large" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                    <div>
+                    <h3>
+                        <p>NOMBRE</p>
+                        <p>
+                            <li>Intervalo X.1</li>
+                            <li>Intervalo X.2</li>
+                            <ul>
+                                <li>Intervalo X.2.1</li>
+                                <li>Intervalo X.2.2</li>
+                                <li>Intervalo X.2.3</li>
+                            </ul>
+                        </p>
+                    </h3>
+                    </div>
+                  <div>
+                      <li>Fecha Inicio</li>
+                      <li>Fecha Fin 
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="" checked>
+                                <span class="form-check-sign">
+                                    <span class="check">actualidad</span>
+                                </span>
+                        </label>
+                      </li>
+                  </div>
+                  <div>
+                      <button id="btn-send-time" class="btn btn-primary ">Enviar a tiempo</button>
+                      <button id="btn-view" class="btn btn-primary">Visualizar</button>
+                      <button id="btn-grafo" class="btn btn-primary">Gráfico</button>
+                  </div>
+                </div>
+            </div>
+            <!--END VIEW-->
         </div>
 
     </div>
