@@ -51,14 +51,14 @@ function goTo(route){
     document.getElementById("event").style.display = "none";          
     document.getElementById("time").style.display = "none";      
     document.getElementById("category").style.display = "none";  
-    document.getElementById("view").style.display = "none";  
+   // document.getElementById("view").style.display = "none";  
     document.getElementById(route).style.display = "block";  
 
     //Change css of sidebar (active class)
     document.getElementById("nav_category").className = "nav_item"
     document.getElementById("nav_time").className = "nav_item"
     document.getElementById("nav_event").className = "nav_item"
-    document.getElementById("nav_view").className = "nav_item"
+  //  document.getElementById("nav_view").className = "nav_item"
     document.getElementById("nav_"+route).className = "nav_item active"   
 }
 
