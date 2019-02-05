@@ -59,11 +59,11 @@
                             <p>Tiempo</p>
                         </a>
                     </li>
-                    <!--<li id="nav_view" class="nav-item ">
+                    <li id="nav_view" class="nav-item ">
                         <a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">timeline</i>
                             <p>Vista Intervalo</p>
                         </a>
-                    </li>-->
+                    </li>
                 </ul>
             </div>
         </div>
@@ -71,7 +71,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
-                    <div class="navbar-wrapper">  </div>
+                    <div class="navbar-wrapper"> </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
@@ -300,38 +300,66 @@
             <!--END TIME-->
             <!--VIEW-->
             <div id="view" style="display:none" class="content">
-                <div class="search-container">
-                    <form action="/action_page.php">
-                        <input class="w3-round-large" type="text" placeholder="Buscar un evento..." name="search">
-                        <button class="w3-round-large" type="submit"> <i class="fa fa-search"></i> </button>
-                    </form>
-                    <div>
-                        <h3>
-                            <p>NOMBRE</p>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">Intervalo 1</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Nombre</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                        <i class="material-icons">delete</i>
+                                                    </button> </div>
+                                                <div class="col-md-5">
+                                                    <div class="card">
+                                                        <div class="card-header card-header-icon card-header-rose">
+                                                            <div class="card-icon">
+                                                                <i class="material-icons">language</i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Subintervalos</h4>
+                                                            En este recuadro van a estar todos los subintervalos
+                                                            listados
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Fecha de inicio</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Fecha de fin</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                            <li>Intervalo X.1</li>
-                            <li>Intervalo X.2</li>
-                            <ul>
-                                <li>Intervalo X.2.1</li>
-                                <li>Intervalo X.2.2</li>
-                                <li>Intervalo X.2.3</li>
-                            </ul>
+                                            </div>
 
-                        </h3>
-                    </div>
-                    <div>
-                        <li>Fecha Inicio</li>
-                        <li>Fecha Fin
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" value="" checked> <span class="form-check-sign">
-                                    <span class="check">actualidad</span> </span>
-                            </label>
-                        </li>
-                    </div>
-                    <div>
-                        <button id="btn-send-time" class="btn btn-primary ">Enviar a tiempo</button>
-                        <button id="btn-view" class="btn btn-primary">Visualizar</button>
-                        <button id="btn-grafo" class="btn btn-primary">Gráfico</button>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -348,7 +376,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="material-icons">clear</i>
                                 </button>
                                 <h4 class="card-title">LOG IN</h4>
-                             <!---<div class="social-line">
+                                <!---<div class="social-line">
                                     <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-facebook-square"></i>
                                     </a>
                                     <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-twitter"></i>

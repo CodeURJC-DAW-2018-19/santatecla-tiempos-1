@@ -12,8 +12,8 @@ $('.datetimepicker').datetimepicker({
     }
 });
 function accesscontrol() {
-    console.log (user);
-    console.log (password);
+    console.log(user);
+    console.log(password);
     var user = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     if ((user == "grupo12") && (password == "1234")) {
@@ -46,19 +46,19 @@ function loginindex(data) {
         }
     }
 }
-function goTo(route){
+function goTo(route) {
     //Hide all sections and show the section selected
-    document.getElementById("event").style.display = "none";          
-    document.getElementById("time").style.display = "none";      
-    document.getElementById("category").style.display = "none";  
-   // document.getElementById("view").style.display = "none";  
-    document.getElementById(route).style.display = "block";  
+    document.getElementById("event").style.display = "none";
+    document.getElementById("time").style.display = "none";
+    document.getElementById("category").style.display = "none";
+    document.getElementById("view").style.display = "none";
+    document.getElementById(route).style.display = "block";
 
     //Change css of sidebar (active class)
     document.getElementById("nav_category").className = "nav_item"
     document.getElementById("nav_time").className = "nav_item"
     document.getElementById("nav_event").className = "nav_item"
-  //  document.getElementById("nav_view").className = "nav_item"
-    document.getElementById("nav_"+route).className = "nav_item active"   
+    document.getElementById("nav_view").className = "nav_item"
+    document.getElementById("nav_" + route).className = "nav_item active"
 }
 
