@@ -11,6 +11,9 @@
 | *Álvaro Orbaneja Gómez*    | a.orbaneja@alumnos.urjc.es | [aorbaneja](https://github.com/aorbaneja)            |
 
 
+#Trello
+https://trello.com/b/3hLVo1I0
+
 # Imágenes
 ![Inicio de sesión](screenshots/Phase&#32;1/Captura&#32;3.jpg)
 ![Categorías](/screenshots/Phase&#32;1/Captura&#32;1.jpg)
