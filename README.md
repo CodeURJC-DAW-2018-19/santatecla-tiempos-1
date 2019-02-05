@@ -12,3 +12,7 @@
 
 
 # Imágenes
+
+# Enlace a la documentación
+
+https://docs.google.com/document/d/1rWcAxrTCxYdzGzAHamFft_bQ4EsX8VsRZJQfyriQ8r0/edit
