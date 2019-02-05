@@ -11,16 +11,30 @@
 | *Álvaro Orbaneja Gómez*    | a.orbaneja@alumnos.urjc.es | [aorbaneja](https://github.com/aorbaneja)            |
 
 
-#Trello
+# Trello
 https://trello.com/b/3hLVo1I0
 
 # Imágenes
+
+## Inicio de sesión
 ![Inicio de sesión](screenshots/Phase&#32;1/Captura&#32;3.jpg)
+
+## Página de categorías
 ![Categorías](/screenshots/Phase&#32;1/Captura&#32;1.jpg)
+
+## Página de eventos
 ![Eventos](screenshots/Phase&#32;1/Captura&#32;4.jpg)
+
+## Página de tiempos
 ![Tiempos](screenshots/Phase&#32;1/Captura&#32;7.jpg)
+
+## Ventana nueva/editar categoría
 ![Ventana nueva/editar categoria](screenshots/Phase&#32;1/Captura&#32;2.jpg)
+
+## Ventana nuevo/editar evento
 ![Ventana nuevo/editar evento](screenshots/Phase&#32;1/Captura&#32;5.jpg)
+
+## Ventana nuevo/editar tiempo
 ![Ventana nuevo/editar tiempo](screenshots/Phase&#32;1/Captura&#32;6.jpg)
 
 # Diagrama
