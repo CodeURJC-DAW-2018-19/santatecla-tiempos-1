@@ -12,6 +12,15 @@
 
 
 # Imágenes
+![Inicio de sesión](screenshots/Phase&#32;1/Captura&#32;3.jpg)
+![Categorías](/screenshots/Phase&#32;1/Captura&#32;1.jpg)
+![Eventos](screenshots/Phase&#32;1/Captura&#32;4.jpg)
+![Tiempos](screenshots/Phase&#32;1/Captura&#32;7.jpg)
+![Ventana nueva/editar categoria](screenshots/Phase&#32;1/Captura&#32;2.jpg)
+![Ventana nuevo/editar evento](screenshots/Phase&#32;1/Captura&#32;5.jpg)
+![Ventana nuevo/editar tiempo](screenshots/Phase&#32;1/Captura&#32;6.jpg)
+
+# Diagrama
 
 # Enlace a la documentación
 
