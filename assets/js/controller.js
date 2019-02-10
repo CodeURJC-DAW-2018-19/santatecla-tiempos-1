@@ -62,3 +62,6 @@ function goTo(route) {
     document.getElementById("nav_" + route).className = "nav_item active"
 }
 
+document.getElementById('actualidad').onchange = function() {
+    document.getElementById('dateDisabled').disabled = this.checked;
+};
