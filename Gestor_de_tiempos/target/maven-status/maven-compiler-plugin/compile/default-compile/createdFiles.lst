@@ -1,0 +1,12 @@
+es\urjc\code\daw\repositories\UserRepository.class
+es\urjc\code\daw\application\Application.class
+es\urjc\code\daw\controllers\SesionController.class
+es\urjc\code\daw\user\User.class
+es\urjc\code\daw\controllers\CSRFHandlerInterceptor.class
+es\urjc\code\daw\controllers\CSRFHandlerConfiguration.class
+es\urjc\code\daw\repositories\Category.class
+es\urjc\code\daw\repositories\Time.class
+es\urjc\code\daw\controllers\DataBaseLoader.class
+es\urjc\code\daw\controllers\SecurityConfiguration.class
+es\urjc\code\daw\controllers\WebSecurityConfig.class
+es\urjc\code\daw\controllers\UserRepositoryAuthenticationProvider.class

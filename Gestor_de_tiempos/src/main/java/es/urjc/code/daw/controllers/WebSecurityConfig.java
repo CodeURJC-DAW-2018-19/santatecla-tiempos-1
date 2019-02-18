@@ -1,7 +1,7 @@
 package es.urjc.code.daw.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @Configuration
 @EnableWebSecurity 
+@ComponentScan
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
     public UserRepositoryAuthenticationProvider authenticationProvider;
