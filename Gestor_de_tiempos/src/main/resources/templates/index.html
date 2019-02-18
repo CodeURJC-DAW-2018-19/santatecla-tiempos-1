@@ -75,7 +75,7 @@
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <button class="btn btn-round" data-toggle="modal" data-target="#loginModal"> Login <i
+                                <button class="btn btn-round" data-toggle="modal" data-target="#loginModal"> {{username}} <i
                                         class="material-icons">assignment</i> </button>
                             </li>
                         </ul>
@@ -433,16 +433,9 @@
                             </div>
                         </div>
                         <div class="modal-body">
-                            <form class="form" method="" action="">
+                            <form class="form" method="post" action="/">
                                 <div class="card-body">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"> <i class="material-icons">face</i> </div>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="First Name...">
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -461,6 +454,11 @@
                                             <input type="password" placeholder="Password..." class="form-control">
                                         </div>
                                     </div>
+                                    <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
+                                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                                </div>
+                                <div>
+                                    
                                 </div>
                             </form>
                         </div>

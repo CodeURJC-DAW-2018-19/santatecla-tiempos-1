@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
         
         // Private pages (all other pages)
-       /* http.authorizeRequests().antMatchers("/servicios_cliente").hasAnyRole("CLIENT");
+        http.authorizeRequests().antMatchers("/servicios_cliente").hasAnyRole("CLIENT");
         http.authorizeRequests().antMatchers("/datos_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/editar_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN");
@@ -36,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         // Logout
         http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/home"); */
-
+        http.logout().logoutSuccessUrl("/home"); 
+        
     }
     
     @Autowired
