@@ -32,12 +32,6 @@ public class DataBaseLoader {
         user3=userRepository.findByEmail("miguel@gmail.com");
         if(userRepository.findByEmail("noelia@gmail.com")==null)
 	        user4=userRepository.save(user4);
-        user4=userRepository.findByEmail("noelia@gmail.com");
-        
-        
-        
-        
-        
-       
+        user4=userRepository.findByEmail("noelia@gmail.com");           
     }
 }
