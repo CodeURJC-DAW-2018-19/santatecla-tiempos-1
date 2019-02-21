@@ -11,9 +11,8 @@ public class EventsServices
     @Autowired
     private EventRepository repository;
 
-
-    public void addEvent(Event concept){
-        repository.save(concept);
+    public void addEvent(Event event){
+        repository.save(event);
     }
     public void deleteEventById(long id) {
         repository.deleteById(id);

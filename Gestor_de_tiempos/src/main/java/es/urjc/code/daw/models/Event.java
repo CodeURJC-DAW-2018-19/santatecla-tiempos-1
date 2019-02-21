@@ -11,7 +11,7 @@ public class Event
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long idEvent;
 
     @Column
     private String Image;
