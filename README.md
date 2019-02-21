@@ -39,6 +39,8 @@ https://trello.com/b/3hLVo1I0
 
 # Diagrama
 
+![diagram](https://github.com/CodeURJC-DAW-2018-19/santatecla-tiempos-1/blob/master/screenshots/Phase%201/Diagrama.PNG)
+
 # Instalación y configuración del entorno de programación
 
 Se debe instalar mysql,configurarlo en las variables del path e inciarlo en el directorio del proyecto. Se lanzan las queries de la creación de la base de datos y tablas tras acceder desde ahí a mysql, y la query de inserción de datos. Posteriormente se ejecuta el aplication.java del proyecto, y se puede acceder ya con https://localhost:8433 a la aplicación.
