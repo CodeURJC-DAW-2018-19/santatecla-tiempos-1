@@ -37,9 +37,13 @@ https://trello.com/b/3hLVo1I0
 ## Ventana nuevo/editar tiempo
 ![Ventana nuevo/editar tiempo](screenshots/Phase&#32;1/Captura&#32;6.jpg)
 
-# Diagrama
+# Diagrama de entidades BBDD
 
 ![diagram](https://github.com/CodeURJC-DAW-2018-19/santatecla-tiempos-1/blob/master/screenshots/Phase%201/Diagrama.PNG)
+
+# Diagrama de clases
+
+![diagram](https://github.com/CodeURJC-DAW-2018-19/santatecla-tiempos-1/blob/master/screenshots/Phase%201/Clases.png)
 
 # Instalación y configuración del entorno de programación
 
