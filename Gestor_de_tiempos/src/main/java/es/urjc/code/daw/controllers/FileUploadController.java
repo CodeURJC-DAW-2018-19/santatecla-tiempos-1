@@ -1,61 +1,45 @@
 package es.urjc.code.daw.controllers;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import es.urjc.code.daw.models.Event;
+import es.urjc.code.daw.repositories.EventRepository;
+import es.urjc.code.daw.services.EventsServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class FileUploadController {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(FileUploadController.class);
+    @Autowired
+    EventsServices eventsService;
 
-    /**
-     * Upload single file using Spring Controller
-     */
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public @ResponseBody
-    String uploadFileHandler(@RequestParam("name") String name,
-                             @RequestParam("file") MultipartFile file) {
 
-        if (!file.isEmpty()) {
+    @PostMapping("/savedEvent")
+    public String saveConcept(Model model, Event event, @RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+        if(!multipartFile.isEmpty()){
+            Path derectorioRecursos = Paths.get("src//main//resources//static//uploads");
+            String rootPath = derectorioRecursos.toFile().getAbsolutePath();
             try {
-                byte[] bytes = file.getBytes();
-
-                // Creating the directory to store file
-                String rootPath = System.getProperty("santatecla.home");
-                File dir = new File(rootPath + File.separator + "tmpFiles");
-                if (!dir.exists())
-                    dir.mkdirs();
-
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-
-                logger.info("Server File Location="
-                        + serverFile.getAbsolutePath());
-
-                return "You successfully uploaded file=" + name;
-            } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+                byte[] bytes = multipartFile.getBytes();
+                Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
+                Files.write(rutaCompleta, bytes);
+                redirectAttributes.addFlashAttribute("Información", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
+                event.setImage(multipartFile.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } else {
-            return "You failed to upload " + name
-                    + " because the file was empty.";
         }
+        eventsService.addEvent(event);
+        return "redirect:/index";
     }
 
 }
