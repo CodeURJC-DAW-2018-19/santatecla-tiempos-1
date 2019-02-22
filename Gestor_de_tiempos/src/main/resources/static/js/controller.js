@@ -61,11 +61,6 @@ function goTo(route) {
     document.getElementById("nav_view").className = "nav_item"
     document.getElementById("nav_" + route).className = "nav_item active"
 }
- function registerview(){
-     document.getElementById("loginModalContent1").style.display="none";
-     document.getElementById("loginModalContent2").style.display="block";
- }
-
 
 document.getElementById('actualidad').onchange = function() {
     document.getElementById('dateDisabled').disabled = this.checked;

@@ -25,8 +25,9 @@ public class SesionController {
 	    String name="LOGIN";
 	    if(userRepository.findByEmail(email)!=null)
 	    	name=userRepository.findByEmail(email).getName();
+	    model.addAttribute("student", request.isUserInRole("STUDENT"));
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("estudiante",(request.isUserInRole("STUDENT")||
+		model.addAttribute("user",(request.isUserInRole("STUDENT")||
 				request.isUserInRole("ADMIN")));
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
