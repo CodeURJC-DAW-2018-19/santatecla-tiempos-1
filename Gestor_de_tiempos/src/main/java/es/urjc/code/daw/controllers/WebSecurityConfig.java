@@ -21,22 +21,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/index").permitAll();
 	
         
-        // Private pages (all other pages)
+       /* // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/servicios_cliente").hasAnyRole("CLIENT");
         http.authorizeRequests().antMatchers("/datos_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/editar_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
-        http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN"); */
         
         // Login form
-        http.formLogin().loginPage("/login");
-        http.formLogin().usernameParameter("username");
+        http.formLogin().loginPage("/index");
+        http.formLogin().usernameParameter("email");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/home");
+        http.formLogin().defaultSuccessUrl("/index");
         http.formLogin().failureUrl("/loginerror");
         
         // Logout
-        http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/home"); 
+        http.logout().logoutUrl("/index");
+        http.logout().logoutSuccessUrl("/index"); 
         
     }
     

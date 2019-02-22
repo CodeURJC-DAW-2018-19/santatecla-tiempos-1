@@ -365,7 +365,7 @@
                         </div>
                         {{^estudiante}}
                         <div class="modal-body">
-                            <form class="form" method="post" action="/">
+                            <form method="post" action="/login">
                                 <div class="card-body">
                                     
                                     <div class="form-group bmd-form-group">
@@ -374,7 +374,7 @@
                                                 <div class="input-group-text"> <i class="material-icons">email</i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Email...">
+                                            <input id="inputEmail" name="email" type="text" class="form-control" placeholder="Email..." required>
                                         </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
@@ -383,7 +383,7 @@
                                                 <div class="input-group-text"> <i class="material-icons">lock_outline</i>
                                                 </div>
                                             </div>
-                                            <input type="password" placeholder="Password..." class="form-control">
+                                            <input id="inputPassword" class="form-control" name="password" type="password" placeholder="Password..." required>
                                         </div>
                                     </div>
                                     <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
