@@ -30,14 +30,12 @@ public class Category{
 */
 	@Column(unique=true)
 	
-	private String nameC;
+	private String name;
 	
 	public Category() {
 	}
 	public Category(String name) {
-	
-		this.nameC = name;
-
+		this.name = name;
 	}
 
 
@@ -50,11 +48,11 @@ public class Category{
 	}
 	
 	public String getName() {
-		return this.nameC;
+		return this.name;
 	}
 
 	public void setName(String name) {
-		this.nameC = name;
+		this.name = name;
 	}
 
 /*	@OneToMany
@@ -63,6 +61,6 @@ public class Category{
 	*/
 	@Override
 	public String toString() {
-		return "Category{" + "idCategory=" + idCategory + ", name='" + nameC + '\''+'}';
+		return "Category{" + "idCategory=" + idCategory + ", name='" + name + '\''+'}';
 	}
 }

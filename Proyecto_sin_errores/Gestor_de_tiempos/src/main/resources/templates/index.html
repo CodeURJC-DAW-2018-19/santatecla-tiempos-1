@@ -104,7 +104,7 @@
                                     <div class="tab-pane active" id="profile">
                                         <table class="table table-hover table-striped">
                                             <tbody>
-                                                {{#categorias}}
+                                                {{#categorias.name}}
                                                 <tr>
                                                     <td class="periodIndex">{{-index}}</td>
                                                     <td class="periodContent"> {{.}}</td>
@@ -117,7 +117,7 @@
                                                     </td>
                                                     {{/admin}}
                                                 </tr>
-                                                {{/categorias}}
+                                                {{/categorias.name}}
                                             </tbody>
                                         </table>
                                     </div>

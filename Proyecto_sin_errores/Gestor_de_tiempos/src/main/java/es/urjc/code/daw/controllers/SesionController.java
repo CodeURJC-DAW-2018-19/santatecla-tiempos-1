@@ -11,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.urjc.code.daw.repositories.CategoryRepository;
 import es.urjc.code.daw.repositories.UserRepository;
 @Controller
 public class SesionController {
 
 	@Autowired
     private UserRepository userRepository;
+	@Autowired
+    private CategoryRepository categoryRepository;
 
 	@RequestMapping(value="/home", method = { RequestMethod.GET, RequestMethod.POST })
 	public String root(Model model,HttpServletRequest request) {
@@ -33,7 +36,8 @@ public class SesionController {
 				request.isUserInRole("ADMIN")));
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
-
+		//Categories
+		model.addAttribute("categorias",categoryRepository.findAll());
 		return "home";
 	}
 	
