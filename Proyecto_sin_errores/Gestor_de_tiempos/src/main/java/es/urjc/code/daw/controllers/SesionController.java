@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,12 @@ public class SesionController {
 	@Autowired
     private UserRepository userRepository;
 
-	@RequestMapping(value="/", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/home", method = { RequestMethod.GET, RequestMethod.POST })
 	public String root(Model model,HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 model.addAttribute("token", token.getToken()); 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    
+		System.out.println("\n\n\n"+"-"+userRepository.findByEmail("miguel@gmail.com").getName()+"-"+auth.getName());
 		String email = auth.getName(); //get logged in username
 	    String name="LOGIN";
 	    if(userRepository.findByEmail(email)!=null)
@@ -31,7 +34,7 @@ public class SesionController {
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
 
-		return "index";
+		return "home";
 	}
 	
 	@RequestMapping(value="/index", method = { RequestMethod.GET, RequestMethod.POST })
@@ -50,32 +53,4 @@ public class SesionController {
 
 		return "index";
 	}
-	
-	@RequestMapping(value="/error",method = RequestMethod.GET)
-	public String errors(Model model,HttpServletRequest request) {
-		String errorMsg = "";
-		Integer httpErrorCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-		switch (httpErrorCode) {
-            case 400: {
-                errorMsg = "400. Bad Request";
-                break;
-            }
-            case 401: {
-                errorMsg = "401. Unauthorized";
-                break;
-            }
-            case 404: {
-                errorMsg = "404. Resource not found";
-                break;
-            }
-            case 500: {
-                errorMsg = "500. Internal Server Error";
-                break;
-            }
-        }
-		
-		model.addAttribute("errorMsg",errorMsg);
-		 
-		return "error";
-	}	
 }
