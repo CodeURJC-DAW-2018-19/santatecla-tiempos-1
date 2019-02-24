@@ -1,9 +1,7 @@
 package es.urjc.code.daw.controllers;
 
-
 import es.urjc.code.daw.repositories.*;
-import es.urjc.code.daw.user.Category;
-import es.urjc.code.daw.user.User;
+import es.urjc.code.daw.user.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +17,8 @@ public class DataBaseLoader {
 
     @PostConstruct
     public void init(){
-    	//USER
+
+        //Para poder guardar los datos primero se crea el objeto "user1" de la clase 1 y se inicializa con los valores de cada campo.
         User user1 =  new User("administrador", "administrador@gmail.com", "1234" , "ROLE_ADMIN");
         User user2 =  new User("Silvia", "silvia@gmail.com", "1234" , "ROLE_STUDENT");
         User user3 =  new User("Miguel", "miguel@gmail.com", "1234" , "ROLE_STUDENT");
@@ -35,30 +34,28 @@ public class DataBaseLoader {
         user3=userRepository.findByEmail("miguel@gmail.com");
         if(userRepository.findByEmail("noelia@gmail.com")==null)
 	        user4=userRepository.save(user4);
-        user4=userRepository.findByEmail("noelia@gmail.com");    
-        //CATEGORY
-        Category category1 = new Category("Categoria1");
-        Category category2 = new Category("Categoria2");
-        /*Category category3 = new Category("Categoria3");
-        Category category4 = new Category("Categoria4");*/
-
-        if (categoryRepository.findByName("Categoria1")==null) {
-        	category1=categoryRepository.save(category1);
-        }
-        category1=categoryRepository.findByName("Categoria1");
+        user4=userRepository.findByEmail("noelia@gmail.com");          
         
-        if (categoryRepository.findByName("Categoria2")==null) {
-        	category2=categoryRepository.save(category2);
+        //CATEGORIES
+        Category category1 = new Category ("Categoría 1");
+        Category category2 = new Category ("Categoría 2");
+        Category category3 = new Category ("Categoría 3");
+        Category category4 = new Category ("Categoría 4");
+        if (categoryRepository.findByName("Categoría 1")==null) {
+         	category1 = categoryRepository.save(category1);
         }
-        category2=categoryRepository.findByName("Categoria2");
-       /*if (categoryRepository.findByName("Categoria3")==null) {
-        	category3=categoryRepository.save(category1);
+        category1 = categoryRepository.findByName("Categoría 1");
+        if (categoryRepository.findByName("Categoría 2")==null) {
+         	category2 = categoryRepository.save(category2);
         }
-        category3=categoryRepository.findByName("Categoria3");
-        if (categoryRepository.findByName("Categoria4")==null) {
-        	category4=categoryRepository.save(category1);
+        category2 = categoryRepository.findByName("Categoría 2");
+        if (categoryRepository.findByName("Categoría 3")==null) {
+         	category3 = categoryRepository.save(category3);
         }
-        category4=categoryRepository.findByName("Categoria4");*/
-
+        category3 = categoryRepository.findByName("Categoría 3");
+        if (categoryRepository.findByName("Categoría 4")==null) {
+         	category4 = categoryRepository.save(category4);
+        }
+        category4 = categoryRepository.findByName("Categoría 4");
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity 
@@ -20,31 +19,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/index").permitAll();
-        http.authorizeRequests().antMatchers("/home").permitAll();
-
-       /* // Private pages (all other pages)
+	
+        
+        // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/servicios_cliente").hasAnyRole("CLIENT");
         http.authorizeRequests().antMatchers("/datos_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/editar_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
-        http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN"); */
+        http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN");
         
         // Login form
-        http.formLogin().loginPage("/home");
-        http.formLogin().usernameParameter("email");
+        http.formLogin().loginPage("/login");
+        http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/home");
         http.formLogin().failureUrl("/loginerror");
         
         // Logout
-        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home");
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/home"); 
         
     }
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	
-    	/*auth.inMemoryAuthentication().withUser("estudiante@gmail.com").password("1234").roles("STUDENT");
-        auth.inMemoryAuthentication().withUser("admin@gmail.com").password("1234").roles("ADMIN");*/
         auth.authenticationProvider(authenticationProvider);
     }
 }
