@@ -104,10 +104,10 @@
                                     <div class="tab-pane active" id="profile">
                                         <table class="table table-hover table-striped">
                                             <tbody>
-                                                {{#categorias}}
+                                                {{#categorias.name}}
                                                 <tr>
                                                     <td class="periodIndex">{{-index}}</td>
-                                                    <td class="periodContent"> {{categorias.name}}</td>
+                                                    <td class="periodContent"> {{.}}</td>
                                                     {{#admin}}
                                                     <td class="td-actions text-right periodButtons">
                                                         <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
@@ -117,7 +117,7 @@
                                                     </td>
                                                     {{/admin}}
                                                 </tr>
-                                                {{/categorias}}
+                                                {{/categorias.name}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -490,7 +490,7 @@
             </div>
         </div>
         <!--Popup newCategory-->
-        <div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" >
             <div class="modal-dialog modal-signup" role="document">
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
@@ -500,9 +500,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form method="POST" action="/addCategory" modelAttribute="Category">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
+                                    <input name="pruebaname" type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
                                 </div>
                                 <button type="submit" class="btn btn-primary">ACEPTAR</button>
                             </form>

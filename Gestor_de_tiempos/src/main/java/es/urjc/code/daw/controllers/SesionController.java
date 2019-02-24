@@ -1,6 +1,7 @@
 package es.urjc.code.daw.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,11 +9,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import es.urjc.code.daw.repositories.CategoryRepository;
-import es.urjc.code.daw.repositories.UserRepository;
+import es.urjc.code.daw.repositories.*;
+import es.urjc.code.daw.services.*;
+import es.urjc.code.daw.user.Category;
+
 @Controller
 public class SesionController {
 
@@ -20,6 +27,9 @@ public class SesionController {
     private UserRepository userRepository;
 	@Autowired
     private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private CategoryService CategoryService;
 
 	@RequestMapping(value="/home", method = { RequestMethod.GET, RequestMethod.POST })
 	public String root(Model model,HttpServletRequest request) {
@@ -57,4 +67,14 @@ public class SesionController {
 
 		return "index";
 	}
+	
+	
+	@RequestMapping("/addCategory")
+	public String nuevaCategoria(Model model, @RequestParam String categoryName) {
+		Category NewCategory = new Category (categoryName);
+		CategoryService.save(NewCategory);
+		model.addAttribute("categorias",categoryRepository.findAll());//Vuelve a cargar las categorías
+		return "home";
+	}
+
 }

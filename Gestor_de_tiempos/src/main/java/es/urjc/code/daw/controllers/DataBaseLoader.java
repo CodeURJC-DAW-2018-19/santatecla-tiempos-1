@@ -39,8 +39,8 @@ public class DataBaseLoader {
         //CATEGORY
         Category category1 = new Category("Categoria1");
         Category category2 = new Category("Categoria2");
-        /*Category category3 = new Category("Categoria3");
-        Category category4 = new Category("Categoria4");*/
+        Category category3 = new Category("Categoria3");
+        Category category4 = new Category("Categoria4");
 
         if (categoryRepository.findByName("Categoria1")==null) {
         	category1=categoryRepository.save(category1);
@@ -51,14 +51,14 @@ public class DataBaseLoader {
         	category2=categoryRepository.save(category2);
         }
         category2=categoryRepository.findByName("Categoria2");
-       /*if (categoryRepository.findByName("Categoria3")==null) {
-        	category3=categoryRepository.save(category1);
+       if (categoryRepository.findByName("Categoria3")==null) {
+        	category3=categoryRepository.save(category3);
         }
         category3=categoryRepository.findByName("Categoria3");
         if (categoryRepository.findByName("Categoria4")==null) {
-        	category4=categoryRepository.save(category1);
+        	category4=categoryRepository.save(category4);
         }
-        category4=categoryRepository.findByName("Categoria4");*/
+        category4=categoryRepository.findByName("Categoria4");
 
     }
 }
