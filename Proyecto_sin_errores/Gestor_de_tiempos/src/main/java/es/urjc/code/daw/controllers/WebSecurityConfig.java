@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/index").permitAll();
+		http.authorizeRequests().antMatchers("/error").permitAll();
 	
         
        /* // Private pages (all other pages)

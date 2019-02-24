@@ -50,4 +50,39 @@ public class SesionController {
 
 		return "index";
 	}
+	
+	@RequestMapping(value="/error",method = RequestMethod.GET)
+	public String errors(Model model,HttpServletRequest request) {
+		String errorMsg = "";
+        int httpErrorCode = getErrorCode(request);
+		
+		switch (httpErrorCode) {
+            case 400: {
+                errorMsg = "400. Bad Request";
+                break;
+            }
+            case 401: {
+                errorMsg = "401. Unauthorized";
+                break;
+            }
+            case 404: {
+                errorMsg = "404. Resource not found";
+                break;
+            }
+            case 500: {
+                errorMsg = "500. Internal Server Error";
+                break;
+            }
+        }
+		
+		model.addAttribute("errorMsg",errorMsg);
+		
+		return "error";
+	}
+	
+     
+    private int getErrorCode(HttpServletRequest httpRequest) {
+        return (Integer) httpRequest
+          .getAttribute("javax.servlet.error.status_code");
+    }
 }
