@@ -10,7 +10,7 @@ public class EventController
 
     @RequestMapping(path = "/events")
     public String signin(Model model) {
-        return "event/event";
+        return "event";
     }
 
 }

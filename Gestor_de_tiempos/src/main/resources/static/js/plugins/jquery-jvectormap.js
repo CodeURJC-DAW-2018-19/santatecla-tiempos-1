@@ -357,7 +357,7 @@ var jvm = {
     var deferred = new jvm.$.Deferred(),
       img = jvm.$('<img/>');
 
-    img.error(function() {
+    img.404(function() {
       deferred.reject();
     }).load(function() {
       deferred.resolve(img);
