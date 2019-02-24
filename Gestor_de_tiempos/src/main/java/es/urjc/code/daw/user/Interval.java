@@ -1,7 +1,5 @@
 package es.urjc.code.daw.user;
 
-
-
 import java.io.Serializable;
 import javax.persistence.*;
 

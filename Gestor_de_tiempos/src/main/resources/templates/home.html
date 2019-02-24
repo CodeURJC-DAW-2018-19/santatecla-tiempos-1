@@ -32,8 +32,7 @@
         width: 100%;
     }
 </style>
-<script>
-</script>
+
 
 <body class="" background="img/bg.jpg">
     <div class="wrapper   ">
@@ -352,15 +351,6 @@
                                     {{^estudiante}}Iniciar Sesión{{/estudiante}}
                                     {{#estudiante}}Perfil{{/estudiante}}
                                 </h4>
-                                <!---<div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-facebook-square"></i>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-twitter"></i>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white"> <i class="fab fa-google-plus"></i>
-                                    </a>
-                                </div>-->
                             </div>
                         </div>
                         {{^estudiante}}
@@ -390,7 +380,7 @@
                                     <input type="hidden" name="_csrf" value="{{token}}"/>
                                 </div>
                             </form>
-                            <div class="modal-footer justify-content-center"> <a onclick="registerview()" class="btn btn-primary btn-link btn-wd btn-lg">Registrarse</a> </div>
+                            <div class="modal-footer justify-content-center"> <a onclick="registerview('loginModalContent2')" href="#"class="btn btn-primary btn-link btn-wd btn-lg">Registrarse</a> </div>
                         </div>
                         {{/estudiante}}
                         {{#estudiante}}
@@ -420,7 +410,7 @@
                             </div>
                         </div>
                         <div class="modal-body">
-                            <form class="form" method="post" action="/">
+                            <form class="form" action="/addUser">
                                 <div class="card-body">
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
@@ -428,7 +418,7 @@
                                                 <div class="input-group-text"> <i class="material-icons">person</i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Name...">
+                                            <input name="name" type="text" class="form-control" placeholder="Name...">
                                         </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
@@ -437,7 +427,7 @@
                                                 <div class="input-group-text"> <i class="material-icons">email</i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Email...">
+                                            <input name ="email" type="text" class="form-control" placeholder="Email...">
                                         </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
@@ -446,10 +436,10 @@
                                                 <div class="input-group-text"> <i class="material-icons">lock_outline</i>
                                                 </div>
                                             </div>
-                                            <input type="password" placeholder="Password..." class="form-control">
+                                            <input name ="password"type="password" placeholder="Password..." class="form-control">
                                         </div>
                                     </div>
-                                    <input id="registerSubmit" class="btn btn-primary btn-block" type="submit" value="Registrarse">
+                                    <input onclick="registerview('loginModalContent1')"id="registerSubmit" class="btn btn-primary btn-block" type="submit" value="Registrarse">
                                 </div>
                             </form>
                         </div>

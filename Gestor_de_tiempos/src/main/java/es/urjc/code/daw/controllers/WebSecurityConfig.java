@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/index").permitAll();
+       // http.authorizeRequests().antMatchers("/index").permitAll();
         http.authorizeRequests().antMatchers("/home").permitAll();
 
        /* // Private pages (all other pages)
@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/datos_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/editar_usuario").hasAnyRole("CLIENT", "EMPLOYEE");
         http.authorizeRequests().antMatchers("/administracion").hasAnyRole("ADMIN"); */
+        //http.authorizeRequests().antMatchers("/addCategoy").hasAnyRole("ADMIN");
+
         
         // Login form
         http.formLogin().loginPage("/home");

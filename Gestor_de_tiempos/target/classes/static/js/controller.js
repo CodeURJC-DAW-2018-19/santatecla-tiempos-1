@@ -65,3 +65,10 @@ function goTo(route) {
 document.getElementById('actualidad').onchange = function() {
     document.getElementById('dateDisabled').disabled = this.checked;
 };
+
+function registerview(id){
+    console.log ("ESTAMOS DENTRO");
+    document.getElementById('loginModalContent1').style.display="none";
+    document.getElementById('loginModalContent2').style.display="none";
+    document.getElementById(id).style.display="block";
+}
