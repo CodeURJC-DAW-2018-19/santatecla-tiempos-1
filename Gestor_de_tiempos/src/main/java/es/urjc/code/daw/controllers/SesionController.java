@@ -17,8 +17,8 @@ public class SesionController {
 	@Autowired
     private UserRepository userRepository;
 
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String index(Model model,HttpServletRequest request) {
+	@RequestMapping(value="/", method = { RequestMethod.GET, RequestMethod.POST })
+	public String root(Model model,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    
 		String email = auth.getName(); //get logged in username
@@ -31,6 +31,23 @@ public class SesionController {
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
 
+		return "index";
+	}
+	
+	@RequestMapping(value="/index", method = { RequestMethod.GET, RequestMethod.POST })
+	public String index(Model model,HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    
+		String email = auth.getName(); //get logged in username
+	    String name="LOGIN";
+	    if(userRepository.findByEmail(email)!=null)
+	    	name=userRepository.findByEmail(email).getName();
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("estudiante",(request.isUserInRole("STUDENT")||
+				request.isUserInRole("ADMIN")));
+		model.addAttribute("username",name);
+		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
+		
 		return "index";
 	}
 }
