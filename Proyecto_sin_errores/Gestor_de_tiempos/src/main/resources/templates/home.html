@@ -396,7 +396,10 @@
                         {{#estudiante}}
                         <div class="modal-body">
                             <p>{{username}}</p>
-                            <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Cerrar Sesión"/>
+                            <form method="post" action="/logout">
+                                <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Cerrar Sesión"/>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                            </form>
                         </div>
                         {{/estudiante}}
                         

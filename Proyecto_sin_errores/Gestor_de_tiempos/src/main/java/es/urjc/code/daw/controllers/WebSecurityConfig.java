@@ -35,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().failureUrl("/loginerror");
         
         // Logout
-        http.logout().logoutUrl("/index");
-        http.logout().logoutSuccessUrl("/index"); 
+        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home");
         
     }
     
