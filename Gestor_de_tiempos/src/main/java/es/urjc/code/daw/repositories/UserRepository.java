@@ -1,10 +1,14 @@
 package es.urjc.code.daw.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import es.urjc.code.daw.user.User;
-@Repository
+import es.urjc.code.daw.models.User;
+
+import java.util.Optional;
+
+
 public interface UserRepository extends JpaRepository<User, Long> {
-	User findByEmail(String email);
+	User findByName(String name);
+
+	Optional<User> findByIdUser(long idUser);
 }
