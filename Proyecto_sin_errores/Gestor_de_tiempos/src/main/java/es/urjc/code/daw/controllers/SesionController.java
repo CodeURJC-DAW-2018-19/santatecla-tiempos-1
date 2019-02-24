@@ -81,8 +81,8 @@ public class SesionController {
 	}
 	
      
-    private int getErrorCode(HttpServletRequest httpRequest) {
-        return (Integer) httpRequest
+    private int getErrorCode(HttpServletRequest request) {
+        return (Integer) request
           .getAttribute("javax.servlet.error.status_code");
     }
 }
