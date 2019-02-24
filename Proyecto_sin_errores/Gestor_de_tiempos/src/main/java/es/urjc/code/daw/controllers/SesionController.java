@@ -54,8 +54,7 @@ public class SesionController {
 	@RequestMapping(value="/error",method = RequestMethod.GET)
 	public String errors(Model model,HttpServletRequest request) {
 		String errorMsg = "";
-        int httpErrorCode = getErrorCode(request);
-		
+		Integer httpErrorCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
 		switch (httpErrorCode) {
             case 400: {
                 errorMsg = "400. Bad Request";
@@ -76,13 +75,7 @@ public class SesionController {
         }
 		
 		model.addAttribute("errorMsg",errorMsg);
-		
+		 
 		return "error";
-	}
-	
-     
-    private int getErrorCode(HttpServletRequest request) {
-        return (Integer) request
-          .getAttribute("javax.servlet.error.status_code");
-    }
+	}	
 }
