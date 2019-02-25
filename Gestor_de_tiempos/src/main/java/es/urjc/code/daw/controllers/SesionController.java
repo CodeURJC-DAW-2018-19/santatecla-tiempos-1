@@ -35,37 +35,15 @@ public class SesionController {
 
 	@RequestMapping(value="/home", method = { RequestMethod.GET, RequestMethod.POST })
 	public String root(Model model,HttpServletRequest request) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		 model.addAttribute("token", token.getToken()); 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("\n\n\n"+"-"+userRepository.findByEmail("miguel@gmail.com").getName()+"-"+auth.getName());
-		String email = auth.getName(); //get logged in username
-	    String name="LOGIN";
-	    if(userRepository.findByEmail(email)!=null)
-	    	name=userRepository.findByEmail(email).getName();
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("estudiante",(request.isUserInRole("STUDENT")||
-				request.isUserInRole("ADMIN")));
-		model.addAttribute("username",name);
-		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
+		init(model,request);
 		
-		init(model);
+		
 		return "home";
 	}
 	
 	@RequestMapping(value="/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(Model model,HttpServletRequest request) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    
-		String email = auth.getName(); //get logged in username
-	    String name="LOGIN";
-	    if(userRepository.findByEmail(email)!=null)
-	    	name=userRepository.findByEmail(email).getName();
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		model.addAttribute("estudiante",(request.isUserInRole("STUDENT")||
-				request.isUserInRole("ADMIN")));
-		model.addAttribute("username",name);
-		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
+		init(model,request);
 
 		return "index";
 	}
@@ -76,6 +54,28 @@ public class SesionController {
 		Category NewCategory = new Category (categoryName);
 		CategoryService.save(NewCategory);
 		
+		
+		
+		init(model,request);
+		return "home";
+	}
+	
+	@RequestMapping(value="/addUser")
+	public String addUser(Model model,HttpServletRequest request,@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+		init(model,request);
+		System.out.println (name);
+		System.out.println (email);
+		System.out.println (password);
+
+        User NewUser =  new User(name, email,password , "ROLE_STUDENT");
+		UserService.save(NewUser);
+		
+		return "home";
+	}
+	
+	//Método que inicializa la bbdd de toda la página
+	//Ir añadiendo campos
+	public void init(Model model,HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		 model.addAttribute("token", token.getToken()); 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -89,26 +89,6 @@ public class SesionController {
 				request.isUserInRole("ADMIN")));
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
-		
-		init(model);
-		return "home";
-	}
-	
-	@RequestMapping(value="/addUser")
-	public String addUser(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
-		System.out.println (name);
-		System.out.println (email);
-		System.out.println (password);
-
-        User NewUser =  new User(name, email,password , "ROLE_STUDENT");
-		UserService.save(NewUser);
-		init(model);
-		return "home";
-	}
-	
-	//Método que inicializa la bbdd de toda la página
-	//Ir añadiendo campos
-	public void init(Model model) {
 		model.addAttribute("categorias",categoryRepository.findAll());//Vuelve a cargar las categorías
 	}
 
