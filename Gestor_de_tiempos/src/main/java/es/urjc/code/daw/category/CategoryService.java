@@ -10,8 +10,11 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 
-	public Category findOne(String name) {
+	public Category findOneByName(String name) {
 		return repository.findByName(name);
+	}
+	public Category findOne(Long id) {
+		return repository.findOne(id);
 	}
 
 	public List<Category> findAll() {
@@ -21,8 +24,8 @@ public class CategoryService {
 	public void save(Category book) {
 		repository.save(book);
 	}
-/*
-	public void delete(long id) {
-		repository.deleteById(id);
-	}*/
+
+	public void delete(long idCategory) {
+		repository.delete(idCategory);
+	}
 }

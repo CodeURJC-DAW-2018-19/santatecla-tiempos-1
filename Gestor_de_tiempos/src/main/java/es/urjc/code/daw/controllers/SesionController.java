@@ -3,11 +3,14 @@ package es.urjc.code.daw.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
 import es.urjc.code.daw.category.CategoryService;
+import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 import es.urjc.code.daw.user.UserService;
@@ -26,6 +30,8 @@ public class SesionController {
     private UserRepository userRepository;
 	@Autowired
     private CategoryRepository categoryRepository;
+	@Autowired
+    private IntervalRepository intervalRepository;
 	
 	//Services
 	@Autowired
@@ -53,9 +59,15 @@ public class SesionController {
 	public String nuevaCategoria(Model model, @RequestParam String categoryName,HttpServletRequest request) {
 		Category NewCategory = new Category (categoryName);
 		CategoryService.save(NewCategory);
-		
-		
-		
+		init(model,request);
+		return "home";
+	}
+	
+	@RequestMapping(value ="/deleteCategory/{idCategory}", method =  { RequestMethod.GET, RequestMethod.POST })
+	public String deleteCategory(Model model,HttpServletRequest request, @PathVariable long idCategory) {
+		System.out.println ("ENTRAMOS");
+		System.out.println (idCategory);
+		CategoryService.delete(idCategory);
 		init(model,request);
 		return "home";
 	}
@@ -90,6 +102,8 @@ public class SesionController {
 		model.addAttribute("username",name);
 		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
 		model.addAttribute("categorias",categoryRepository.findAll());//Vuelve a cargar las categorías
+		model.addAttribute("intervalos",intervalRepository.findAll());//Vuelve a cargar los intervalos
+
 	}
 
 }

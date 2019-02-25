@@ -67,10 +67,10 @@
                                     {{^estudiante}}
                                     Iniciar Sesión
                                     {{/estudiante}}
-                                    {{#estudiante}} 
-                                        {{username}}
+                                    {{#estudiante}}
+                                    {{username}}
                                     {{/estudiante}}
-                                    <i class="material-icons">assignment</i> 
+                                    <i class="material-icons">assignment</i>
                                 </button>
                             </li>
                         </ul>
@@ -99,10 +99,16 @@
                                                     <td class="periodContent"> {{name}}</td>
                                                     {{#admin}}
                                                     <td class="td-actions text-right periodButtons">
+
                                                         <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                                                             <i class="material-icons">edit</i> </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                            <i class="material-icons">delete</i> </button>
+                                                        <form action="/deleteCategory/{{idCategory}}">
+                                                            <button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm"> 
+                                                                <i class="material-icons">delete</i>
+                                                            </button>
+                                                        </form>
+                                                       <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>-->
                                                     </td>
                                                     {{/admin}}
                                                 </tr>
@@ -111,12 +117,12 @@
                                         </table>
                                     </div>
                                 </div>
-                                
+
                                 {{#admin}}
                                 <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal"
                                     data-target="#newCategoryModal"> <i class="material-icons">add</i> </button>
                                 {{/admin}}
-                                
+
                             </div>
                         </div>
                     </div>
@@ -147,9 +153,11 @@
                                                             <td class="periodContent">{{name}} {{start}} :: {{end}}</td>
                                                             {{#admin}}
                                                             <td class="td-actions text-right periodButtons">
-                                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                                <button type="button" rel="tooltip" title="Edit Task"
+                                                                    class="btn btn-primary btn-link btn-sm">
                                                                     <i class="material-icons">edit</i> </button>
-                                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                                <button type="button" rel="tooltip" title="Remove"
+                                                                    class="btn btn-danger btn-link btn-sm">
                                                                     <i class="material-icons">delete</i> </button>
                                                             </td>
                                                             {{/admin}}
@@ -330,7 +338,7 @@
         <!--POPUPS-->
         <!-- Popup login-->
         <div class="modal fade" id="loginModal" tabindex="-1" role="">
-            <div id ="loginModalContent1" class="modal-dialog modal-login" role="document">
+            <div id="loginModalContent1" class="modal-dialog modal-login" role="document">
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
@@ -347,14 +355,15 @@
                         <div class="modal-body">
                             <form method="post" action="/home">
                                 <div class="card-body">
-                                    
+
                                     <div class="form-group bmd-form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"> <i class="material-icons">email</i>
                                                 </div>
                                             </div>
-                                            <input id="inputEmail" name="email" type="text" class="form-control" placeholder="Email..." required/>
+                                            <input id="inputEmail" name="email" type="text" class="form-control"
+                                                placeholder="Email..." required />
                                         </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
@@ -363,31 +372,33 @@
                                                 <div class="input-group-text"> <i class="material-icons">lock_outline</i>
                                                 </div>
                                             </div>
-                                            <input id="inputPassword" class="form-control" name="password" type="password" placeholder="Password..." required/>
+                                            <input id="inputPassword" class="form-control" name="password" type="password"
+                                                placeholder="Password..." required />
                                         </div>
                                     </div>
-                                    <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión"/>
-                                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                                    <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión" />
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
                                 </div>
                             </form>
-                            <div class="modal-footer justify-content-center"> <a onclick="registerview('loginModalContent2')" href="#"class="btn btn-primary btn-link btn-wd btn-lg">Registrarse</a> </div>
+                            <div class="modal-footer justify-content-center"> <a onclick="registerview('loginModalContent2')"
+                                    href="#" class="btn btn-primary btn-link btn-wd btn-lg">Registrarse</a> </div>
                         </div>
                         {{/estudiante}}
                         {{#estudiante}}
                         <div class="modal-body">
                             <p>{{username}}</p>
                             <form method="post" action="/logout">
-                                <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Cerrar Sesión"/>
-                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                                <input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Cerrar Sesión" />
+                                <input type="hidden" name="_csrf" value="{{token}}" />
                             </form>
                         </div>
                         {{/estudiante}}
-                        
+
                     </div>
                 </div>
             </div>
             {{^estudiante}}
-            <div id ="loginModalContent2" style = "display: none" class="modal-dialog modal-login" role="document">
+            <div id="loginModalContent2" style="display: none" class="modal-dialog modal-login" role="document">
                 <div class="modal-content">
                     <div class="card card-signup card-plain">
                         <div class="modal-header">
@@ -417,7 +428,7 @@
                                                 <div class="input-group-text"> <i class="material-icons">email</i>
                                                 </div>
                                             </div>
-                                            <input name ="email" type="text" class="form-control" placeholder="Email...">
+                                            <input name="email" type="text" class="form-control" placeholder="Email...">
                                         </div>
                                     </div>
                                     <div class="form-group bmd-form-group">
@@ -426,20 +437,21 @@
                                                 <div class="input-group-text"> <i class="material-icons">lock_outline</i>
                                                 </div>
                                             </div>
-                                            <input name ="password"type="password" placeholder="Password..." class="form-control">
+                                            <input name="password" type="password" placeholder="Password..." class="form-control">
                                         </div>
                                     </div>
-                                    <input onclick="registerview('loginModalContent1')"id="registerSubmit" class="btn btn-primary btn-block" type="submit" value="Registrarse">
+                                    <input onclick="registerview('loginModalContent1')" id="registerSubmit" class="btn btn-primary btn-block"
+                                        type="submit" value="Registrarse">
                                 </div>
                             </form>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
             {{/estudiante}}
         </div>
-      
+
         <!--Popup more time -->
         {{#admin}}
         <div class="modal fade" id="newPeriodModal" tabindex="-1" role="dialog">
@@ -483,9 +495,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action= "/addCategory">
+                            <form action="/addCategory">
                                 <div class="form-group">
-                                    <input name ="categoryName"type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
+                                    <input name="categoryName" type="text" class="form-control" id="inputNameNewCategory"
+                                        placeholder="Nombre">
                                 </div>
                                 <button type="submit" class="btn btn-primary">ACEPTAR</button>
                             </form>

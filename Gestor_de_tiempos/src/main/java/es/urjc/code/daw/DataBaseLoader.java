@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class DataBaseLoader {
-
+	
     @Autowired private UserRepository userRepository;
     @Autowired private CategoryRepository categoryRepository;
     @Autowired private IntervalRepository intervalRepository;
