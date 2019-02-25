@@ -1,5 +1,7 @@
 package es.urjc.code.daw.interval;
 
+
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +9,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name="Interval")
+@Table(name="intervals")
 @NamedQuery(name="Interval.findAll", query="SELECT i FROM Interval i")
 public class Interval{
 
@@ -22,13 +24,17 @@ public class Interval{
 */
 	@Column(unique=true)
 	
-	private String nameI;
-	
+	private String name;
+	private String startdate;
+	private String enddate;
+
 	public Interval() {
 	}
-	public Interval(String name) {
+	public Interval(String name,String startdate,String enddate) {
 	
-		this.nameI = name;
+		this.name = name;
+		this.startdate=startdate;
+		this.enddate=enddate;
 
 	}
 
@@ -41,11 +47,23 @@ public class Interval{
 		this.idInterval = idInterval;
 	}
 
-public String getName() {
-		return nameI;
+	public String getName() {
+		return name;
 	}
 	public void setName(String name) {
-		this.nameI = name;
+		this.name = name;
+	}
+	public String getStart() {
+		return startdate;
+	}
+	public void setStart(String startdate) {
+		this.startdate = startdate;
+	}
+	public String getEnd() {
+		return enddate;
+	}
+	public void setEnd(String enddate) {
+		this.startdate = enddate;
 	}
 	/*	@OneToMany
 	@JoinTable(name="", joinColumns = @JoinColumn(name=""), inverseJoinColumns = @JoinColumn(name=""))
@@ -53,6 +71,6 @@ public String getName() {
 	*/
 	@Override
 	public String toString() {
-		return "Interval{" + "idInterval=" + idInterval + ", name='" + nameI + '\''+'}';
+		return "Interval{" + "idInterval=" + idInterval + ", name='" + name + '\''+startdate.toString()+"::"+enddate.toString()+'}';
 	}
 }
