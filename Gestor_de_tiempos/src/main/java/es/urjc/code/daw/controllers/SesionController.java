@@ -71,10 +71,25 @@ public class SesionController {
 	}
 	
 	
-	@RequestMapping(value ="/addCategory")
-	public String nuevaCategoria(Model model, @RequestParam String categoryName) {
+	@RequestMapping(value ="/addCategory", method = { RequestMethod.GET, RequestMethod.POST })
+	public String nuevaCategoria(Model model, @RequestParam String categoryName,HttpServletRequest request) {
 		Category NewCategory = new Category (categoryName);
 		CategoryService.save(NewCategory);
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 model.addAttribute("token", token.getToken()); 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("\n\n\n"+"-"+userRepository.findByEmail("miguel@gmail.com").getName()+"-"+auth.getName());
+		String email = auth.getName(); //get logged in username
+	    String name="LOGIN";
+	    if(userRepository.findByEmail(email)!=null)
+	    	name=userRepository.findByEmail(email).getName();
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("estudiante",(request.isUserInRole("STUDENT")||
+				request.isUserInRole("ADMIN")));
+		model.addAttribute("username",name);
+		System.out.println("\n\n\n"+email+"-"+name+auth.getName());
+		
 		init(model);
 		return "home";
 	}
