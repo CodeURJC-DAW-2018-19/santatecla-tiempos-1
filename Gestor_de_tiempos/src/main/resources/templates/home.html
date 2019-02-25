@@ -100,14 +100,43 @@
                                                     {{#admin}}
                                                     <td class="td-actions text-right periodButtons">
 
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"
+                                                            data-toggle="modal" data-target="#setCategoryModal{{idCategory}}">
                                                             <i class="material-icons">edit</i> </button>
+                                                        <!--Popup SET Category-->
+                                                        <div class="modal fade" id="setCategoryModal{{idCategory}}"
+                                                            tabindex="-1" role="dialog">
+                                                            <div class="modal-dialog modal-signup" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="card card-signup card-plain">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title card-title">Editar
+                                                                                categoría</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <i class="material-icons">clear</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="/setCategory{{idCategory}}">
+                                                                                <div class="form-group">
+                                                                                    <input name="categoryName" type="text"
+                                                                                        class="form-control" id="inputNameNewCategory"
+                                                                                        placeholder="Nombre">
+                                                                                </div>
+                                                                                <button type="submit" class="btn btn-primary">EDITAR</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <form action="/deleteCategory{{idCategory}}">
-                                                            <button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm"> 
+                                                            <button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm">
                                                                 <i class="material-icons">delete</i>
                                                             </button>
                                                         </form>
-                                                       <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                        <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                                                             <i class="material-icons">delete</i> </button>-->
                                                     </td>
                                                     {{/admin}}
@@ -117,7 +146,6 @@
                                         </table>
                                     </div>
                                 </div>
-
                                 {{#admin}}
                                 <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal"
                                     data-target="#newCategoryModal"> <i class="material-icons">add</i> </button>
@@ -507,6 +535,7 @@
                 </div>
             </div>
         </div>
+
         <!--Popup newEvent-->
         <div class="modal fade bd-example-modal-lg" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">

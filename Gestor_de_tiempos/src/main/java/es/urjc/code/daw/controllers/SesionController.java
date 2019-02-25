@@ -42,8 +42,6 @@ public class SesionController {
 	@RequestMapping(value="/home", method = { RequestMethod.GET, RequestMethod.POST })
 	public String root(Model model,HttpServletRequest request) {
 		init(model,request);
-		
-		
 		return "home";
 	}
 	
@@ -65,12 +63,21 @@ public class SesionController {
 	
 	@RequestMapping(value ="/deleteCategory{idCategory}", method =  { RequestMethod.GET, RequestMethod.POST })
 	public String deleteCategory(Model model,HttpServletRequest request, @PathVariable long idCategory) {
-		System.out.println ("ENTRAMOS");
-		System.out.println (idCategory);
 		CategoryService.delete(idCategory);
 		init(model,request);
 		return "home";
 	}
+	@RequestMapping(value ="/setCategory{idCategory}", method =  { RequestMethod.GET, RequestMethod.POST })
+	public String setCategory(Model model,HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName) {
+		Category NewCategory = new Category (categoryName);
+		NewCategory.setIdCategory(idCategory);
+		CategoryService.save(NewCategory);
+		init(model,request);
+		return "home";
+	}
+	
+	
+	
 	
 	@RequestMapping(value="/addUser")
 	public String addUser(Model model,HttpServletRequest request,@RequestParam String name, @RequestParam String email, @RequestParam String password) {
