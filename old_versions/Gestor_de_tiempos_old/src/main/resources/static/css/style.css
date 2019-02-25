@@ -7,10 +7,3 @@
 .periodButtons{
     width: 10% !important;
 }
-
-#headerLogin{
-    border-radius: 3px;
-    margin-top: -64px;
-    padding: 16px;
-    width: 100%;
-}
