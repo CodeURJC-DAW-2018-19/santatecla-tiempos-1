@@ -3,6 +3,8 @@ package es.urjc.code.daw;
 
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
+import es.urjc.code.daw.interval.Interval;
+import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 
@@ -17,6 +19,7 @@ public class DataBaseLoader {
 
     @Autowired private UserRepository userRepository;
     @Autowired private CategoryRepository categoryRepository;
+    @Autowired private IntervalRepository intervalRepository;
 
     @PostConstruct
     public void init(){
@@ -61,5 +64,19 @@ public class DataBaseLoader {
         }
         category4=categoryRepository.findByName("Categoria4");
 
+        
+        //INTERVAL
+        Interval i1 = new Interval("Intervalo1","23/12/1989","23/11/1994");
+        Interval i2 = new Interval("Intervalo2","2/10/1999","3/11/1995");
+
+        if (intervalRepository.findByName("Intervalo1")==null) {
+        	i1=intervalRepository.save(i1);
+        }
+        i1=intervalRepository.findByName("Intervalo1");
+        
+        if (intervalRepository.findByName("Intervalo2")==null) {
+        	i2=intervalRepository.save(i2);
+        }
+        i2=intervalRepository.findByName("Intervalo2");
     }
 }
