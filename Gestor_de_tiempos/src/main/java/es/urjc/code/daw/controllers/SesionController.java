@@ -63,7 +63,7 @@ public class SesionController {
 		return "home";
 	}
 	
-	@RequestMapping(value ="/deleteCategory/{idCategory}", method =  { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value ="/deleteCategory{idCategory}", method =  { RequestMethod.GET, RequestMethod.POST })
 	public String deleteCategory(Model model,HttpServletRequest request, @PathVariable long idCategory) {
 		System.out.println ("ENTRAMOS");
 		System.out.println (idCategory);
