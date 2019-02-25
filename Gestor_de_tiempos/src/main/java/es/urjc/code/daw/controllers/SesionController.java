@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
 import es.urjc.code.daw.category.CategoryService;
+import es.urjc.code.daw.interval.Interval;
 import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
@@ -76,7 +77,18 @@ public class SesionController {
 		return "home";
 	}
 	
-	
+	@RequestMapping(value ="/addInterval", method = { RequestMethod.GET, RequestMethod.POST })
+	public String newInterval(Model model, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate,  HttpServletRequest request) {
+		System.out.println("\n0:\n");
+
+		Interval newInterval = new Interval (intervalName,startdate,enddate);
+		System.out.println("1:"+newInterval.toString());
+		intervalRepository.save(newInterval);
+		System.out.println("2:"+newInterval.toString());
+
+		init(model,request);
+		return "home";
+	}
 	
 	
 	@RequestMapping(value="/addUser")
