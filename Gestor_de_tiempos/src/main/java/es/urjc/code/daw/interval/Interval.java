@@ -63,7 +63,7 @@ public class Interval{
 		return enddate;
 	}
 	public void setEnd(String enddate) {
-		this.startdate = enddate;
+		this.enddate = enddate;
 	}
 	/*	@OneToMany
 	@JoinTable(name="", joinColumns = @JoinColumn(name=""), inverseJoinColumns = @JoinColumn(name=""))
