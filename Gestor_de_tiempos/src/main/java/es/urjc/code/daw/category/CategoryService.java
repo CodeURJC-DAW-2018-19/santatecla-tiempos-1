@@ -16,15 +16,12 @@ public class CategoryService {
 	public Category findOne(Long id) {
 		return repository.findOne(id);
 	}
-
 	public List<Category> findAll() {
 		return repository.findAll();
 	}
-
 	public void save(Category book) {
 		repository.save(book);
 	}
-
 	public void delete(long idCategory) {
 		repository.delete(idCategory);
 	}

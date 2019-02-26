@@ -100,8 +100,35 @@
 											<tbody>
 												{{#categorias}}
 												<tr>
+													{{#estudiante}}
 													<td class="periodIndex">{{-index}}</td>
-													<td class="periodContent">{{name}}</td> {{#admin}}
+													<td class="periodContent"><a data-toggle="modal"
+														data-target="#showCategoryModal{{idCategory}}"href="#">{{name}}</a></td>
+													<!--Popup SET Category-->
+													<div class="modal fade"
+													id="showCategoryModal{{idCategory}}" tabindex="-1"
+													role="dialog">
+													<div class="modal-dialog modal-signup" role="document">
+														<div class="modal-content">
+															<div class="card card-signup card-plain">
+																<div class="modal-header">
+																	<h5 class="modal-title card-title">Show
+																		category</h5>
+																</div>
+																<div class="modal-body">
+																
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+													{{/estudiante}}
+													{{^estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent">{{name}}</td>
+													{{/estudiante}}
+													{{#admin}}
 													<td class="td-actions text-right periodButtons">
 
 														<button type="button" rel="tooltip" title="Edit Task"
@@ -109,7 +136,8 @@
 															data-toggle="modal"
 															data-target="#setCategoryModal{{idCategory}}">
 															<i class="material-icons">edit</i>
-														</button> <!--Popup SET Category-->
+														</button> 
+														<!--Popup SET Category-->
 														<div class="modal fade"
 															id="setCategoryModal{{idCategory}}" tabindex="-1"
 															role="dialog">
@@ -145,7 +173,8 @@
 															</button>
 														</form> <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                                                             <i class="material-icons">delete</i> </button>-->
-													</td> {{/admin}}
+													</td> 
+													{{/admin}}
 												</tr>
 												{{/categorias}}
 											</tbody>
