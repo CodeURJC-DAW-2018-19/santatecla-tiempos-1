@@ -89,6 +89,23 @@ public class SesionController {
 		init(model,request);
 		return "home";
 	}
+	@RequestMapping(value ="/deleteInterval{idInterval}", method =  { RequestMethod.GET, RequestMethod.POST })
+	public String deleteInterval(Model model,HttpServletRequest request, @PathVariable long idInterval) {
+		intervalRepository.delete(idInterval);
+		init(model,request);
+		return "home";
+	}
+	@RequestMapping(value ="/setInterval{idInterval}", method =  { RequestMethod.GET, RequestMethod.POST })
+	public String setInterval(Model model,HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName,@RequestParam String startdate,@RequestParam String enddate) {
+		//intervalRepository.findOne(idInterval).setName(intervalName);
+		//intervalRepository.findOne(idInterval).setStart(startdate);
+		//intervalRepository.findOne(idInterval).setEnd(enddate);
+Interval newInterval = new Interval (intervalName,startdate,enddate);
+		newInterval.setIdInterval(idInterval);
+		intervalRepository.save(newInterval);
+		init(model,request);
+		return "home";
+	}
 	
 	
 	@RequestMapping(value="/addUser")
