@@ -1,9 +1,6 @@
 package es.urjc.code.daw.event;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -30,6 +27,9 @@ public class Event
     @Column
     private String eventDate;
 
+    public Event(String name) {
+        setName(name);
+    }
 
     public Event(String name, String eventPhoto, String eventWiki, String eventDate) {
         setName(name);
@@ -43,7 +43,6 @@ public class Event
     }
 
     public void setEventDate(String eventDate) {
-        if (eventDate == null) eventDate = "";
         this.eventDate = eventDate;
     }
 

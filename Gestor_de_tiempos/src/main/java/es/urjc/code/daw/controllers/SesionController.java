@@ -148,8 +148,8 @@ public class SesionController {
     START EVENTS
      */
 
-    @RequestMapping(value = "/addEvent/{id}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newEvent(Model model, Event event, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET, RequestMethod.POST})
+    public String newEvent(Model model, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
         String img = "";
         if (!multipartFile.isEmpty()) {
@@ -166,6 +166,7 @@ public class SesionController {
         }
 
         Event newEvent = new Event(eventName, eventPhoto, eventWiki, eventDate);
+        newEvent.setEventPhoto(img);
         EventService.save(newEvent);
 
         init(model, request);
@@ -181,8 +182,8 @@ public class SesionController {
     }
 
     @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam List<Category> categories) {
-        Event event = new Event(eventName, eventPhoto, eventWiki, eventDate);
+    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName) {
+        Event event = new Event(eventName);
         event.setIdEvent(idEvent);
         EventService.save(event);
         init(model, request);

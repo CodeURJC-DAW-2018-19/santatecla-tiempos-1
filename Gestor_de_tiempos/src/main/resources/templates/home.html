@@ -315,18 +315,81 @@
 											<tbody>
 												{{#eventos}}
 												<tr>
+													{{#estudiante}}
 													<td class="periodIndex">{{-index}}</td>
-													<td class="periodContent">{{name}}</td> {{#admin}}
+													<td class="periodContent"><a data-toggle="modal"
+														data-target="#showEventModal{{idEvent}}"href="#">{{name}}</a></td>
+													<!--Popup SET Category-->
+													<div class="modal fade"
+													id="showEventModal{{idEvent}}" tabindex="-1"
+													role="dialog">
+													<div class="modal-dialog modal-signup" role="document">
+														<div class="modal-content">
+															<div class="card card-signup card-plain">
+																<div class="modal-header">
+																	<h5 class="modal-title card-title">Mostar
+																		evento</h5>
+																</div>
+																<div class="modal-body">
+																
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+													{{/estudiante}}
+													{{^estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent">{{name}}</td>
+													{{/estudiante}}
+													{{#admin}}
 													<td class="td-actions text-right periodButtons">
+
 														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-primary btn-link btn-sm">
+															class="btn btn-primary btn-link btn-sm"
+															data-toggle="modal"
+															data-target="#setEventModal{{idEvent}}">
 															<i class="material-icons">edit</i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-link btn-sm">
-															<i class="material-icons">delete</i>
-														</button>
-													</td> {{/admin}}
+														</button> 
+														<!--Popup SET Category-->
+														<div class="modal fade"
+															id="setEventModal{{idEvent}}" tabindex="-1"
+															role="dialog">
+															<div class="modal-dialog modal-signup" role="document">
+																<div class="modal-content">
+																	<div class="card card-signup card-plain">
+																		<div class="modal-header">
+																			<h5 class="modal-title card-title">Editar
+																				evento</h5>
+																			<button type="button" class="close"
+																				data-dismiss="modal" aria-label="Close">
+																				<i class="material-icons">clear</i>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<form action="/setEvent{{idEvent}}">
+																				<div class="form-group">
+																					<input name="eventName" type="text"
+																						class="form-control" id="inputNameNewEvent"
+																						placeholder="Nombre">
+																				</div>
+																				<button type="submit" class="btn btn-primary">EDITAR</button>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<form action="/deleteEvent{{idEvent}}">
+															<button type="submit" title="Remove"
+																class="btn btn-danger btn-link btn-sm">
+																<i class="material-icons">delete</i>
+															</button>
+														</form> <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>-->
+													</td> 
+													{{/admin}}
 												</tr>
 												{{/eventos}}
 											</tbody>
@@ -670,24 +733,24 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form action="/addEvent">
 								<div class="form-row">
 									<div class="col-md-9">
 										<div class="form-group col-md-12">
-											<input type="email" class="form-control"
-												id="inputNameNewEvent" placeholder="Nombre">
+											<input type="text" class="form-control"
+												name="eventName" id="inputNameNewEvent" placeholder="Nombre">
 										</div>
 										<div class="form-group col-md-12">
 											<input type="text" class="form-control datetimepicker"
-												value="" placeholder="Fecha">
+											name="eventDate" value="" placeholder="Fecha">
 										</div>
 										<div class="form-group col-md-12">
 											<input type="text" class="form-control"
-												id="inputURLPhotoNewEvent" placeholder="URL Foto">
+												name="eventPhoto" id="inputURLPhotoNewEvent" placeholder="URL Foto">
 										</div>
 										<div class="form-group col-md-12">
 											<input type="text" class="form-control"
-												id="inputURLWikiNewEvent" placeholder="URL Wiki">
+												name="eventWiki" id="inputURLWikiNewEvent" placeholder="URL Wiki">
 										</div>
 									</div>
 									<div class="col-md-3 fileinput fileinput-new text-center"
