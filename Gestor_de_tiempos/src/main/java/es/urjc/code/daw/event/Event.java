@@ -1,6 +1,10 @@
 package es.urjc.code.daw.event;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="Event")
@@ -12,21 +16,54 @@ public class Event
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long idEvent;
 
-    /*	@ElementCollection(fetch = FetchType.EAGER)
-        private List<String> roles;
+    public Event() {
+    }
 
-        @Column(unique=true)
-    */
     @Column(unique=true)
 
     private String name;
 
-    public Event() {
-    }
-    public Event(String name) {
-        this.name = name;
+    @Column(unique = true)
+    private String eventPhoto;
+    @Column(columnDefinition = "")
+    private String eventWiki;
+    @Column
+    private String eventDate;
+
+
+    public Event(String name, String eventPhoto, String eventWiki, String eventDate) {
+        setName(name);
+        setEventPhoto(eventPhoto);
+        setEventWiki(eventWiki);
+        setEventDate(eventDate);
     }
 
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        if (eventDate == null) eventDate = "";
+        this.eventDate = eventDate;
+    }
+
+    public String getEventPhoto() {
+        return eventPhoto;
+    }
+
+    public void setEventPhoto(String eventPhoto) {
+        if (eventPhoto == null) eventPhoto = "";
+        this.eventPhoto = eventPhoto;
+    }
+
+    public String getEventWiki() {
+        return eventWiki;
+    }
+
+    public void setEventWiki(String eventWiki) {
+        if (eventWiki == null) eventWiki = "";
+        this.eventWiki = eventWiki;
+    }
 
     public Long getIdEvent() {
         return this.idEvent;
@@ -41,14 +78,8 @@ public class Event
     }
 
     public void setName(String name) {
+        if (name == null) name = "";
         this.name = name;
     }
-
-    /*	@OneToMany
-        @JoinTable(name="", joinColumns = @JoinColumn(name=""), inverseJoinColumns = @JoinColumn(name=""))
-
-        */
-
-
 
 }

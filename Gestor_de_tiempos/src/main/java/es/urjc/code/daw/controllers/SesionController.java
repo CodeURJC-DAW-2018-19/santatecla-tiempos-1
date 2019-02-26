@@ -3,6 +3,7 @@ package es.urjc.code.daw.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import es.urjc.code.daw.event.Event;
+import es.urjc.code.daw.event.EventRepository;
 import es.urjc.code.daw.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,15 @@ import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 import es.urjc.code.daw.user.UserService;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class SesionController {
@@ -35,6 +45,8 @@ public class SesionController {
     private CategoryRepository categoryRepository;
     @Autowired
     private IntervalRepository intervalRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     //Services
     @Autowired
@@ -128,6 +140,60 @@ public class SesionController {
     END INTERVAL
      */
 
+
+    @Autowired
+    private EventService EventService;
+
+    /*
+    START EVENTS
+     */
+
+    @RequestMapping(value = "/addEvent/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String newEvent(Model model, Event event, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
+        String img = "";
+        if (!multipartFile.isEmpty()) {
+            String rootPath = "C://Temp//uploads";
+            try {
+                byte[] bytes = multipartFile.getBytes();
+                Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
+                Files.write(rutaCompleta, bytes);
+                redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
+                img= multipartFile.getOriginalFilename();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Event newEvent = new Event(eventName, eventPhoto, eventWiki, eventDate);
+        EventService.save(newEvent);
+
+        init(model, request);
+        return "redirect:/home";
+    }
+
+
+    @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteEvent(Model model, HttpServletRequest request, @PathVariable long idEvent) {
+        EventService.delete(idEvent);
+        init(model, request);
+        return "home";
+    }
+
+    @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam List<Category> categories) {
+        Event event = new Event(eventName, eventPhoto, eventWiki, eventDate);
+        event.setIdEvent(idEvent);
+        EventService.save(event);
+        init(model, request);
+        return "home";
+    }
+
+    /*
+    END EVENTS
+     */
+
+
     @RequestMapping(value = "/addUser")
     public String addUser(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
         init(model, request);
@@ -150,16 +216,18 @@ public class SesionController {
         System.out.println("\n\n\n" + "-" + userRepository.findByEmail("miguel@gmail.com").getName() + "-" + auth.getName());
         String email = auth.getName(); //get logged in username
         String name = "LOGIN";
-        if (userRepository.findByEmail(email) != null)
+        if (userRepository.findByEmail(email) != null) {
             name = userRepository.findByEmail(email).getName();
+        }
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
         model.addAttribute("estudiante", (request.isUserInRole("STUDENT") ||
                 request.isUserInRole("ADMIN")));
         model.addAttribute("username", name);
         System.out.println("\n\n\n" + email + "-" + name + auth.getName());
+
         model.addAttribute("categorias", categoryRepository.findAll());//Vuelve a cargar las categorías
         model.addAttribute("intervalos", intervalRepository.findAll());//Vuelve a cargar los intervalos
-
+        model.addAttribute("eventos", eventRepository.findAll());//Vuelve a cargar los eventos
     }
 
 }
