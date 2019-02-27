@@ -21,7 +21,13 @@ import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 import es.urjc.code.daw.user.UserService;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class SesionController {
@@ -136,8 +142,8 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
-    public String newEvent(Model model, Event event/*, @RequestParam("file") MultipartFile multipartFile*/, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        /*if (!multipartFile.isEmpty()) {
+    public String newEvent(Model model, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        if (!multipartFile.isEmpty()) {
             String rootPath = "C://Temp//uploads";
             try {
                 byte[] bytes = multipartFile.getBytes();
@@ -148,10 +154,9 @@ public class SesionController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         eventService.save(event);
-       // model.addAllAttributes("addevent", "");
         init(model, request);
         return "redirect:/home";
     }
