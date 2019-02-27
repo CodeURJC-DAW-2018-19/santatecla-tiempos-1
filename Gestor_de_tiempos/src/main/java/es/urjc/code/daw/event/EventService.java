@@ -15,7 +15,7 @@ public class EventService {
         return repository.findByName(name);
     }
     public Event findOne(Long id) {
-        return repository.findOne(id);
+        return repository.getOne(id);
     }
 
     public List<Event> findAll() {

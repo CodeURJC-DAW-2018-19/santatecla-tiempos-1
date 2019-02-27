@@ -16,33 +16,32 @@ public class Event
     public Event() {
     }
 
-    @Column(unique=true)
+    @Column()
 
     private String name;
 
-    @Column(unique = true)
+    @Column
     private String eventPhoto;
     @Column(columnDefinition = "")
     private String eventWiki;
     @Column
-    private String eventDate;
+    private Date eventDate;
 
     public Event(String name) {
         setName(name);
     }
 
-    public Event(String name, String eventPhoto, String eventWiki, String eventDate) {
+    public Event(String name, String eventWiki, Date eventDate) {
         setName(name);
-        setEventPhoto(eventPhoto);
         setEventWiki(eventWiki);
         setEventDate(eventDate);
     }
 
-    public String getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
 

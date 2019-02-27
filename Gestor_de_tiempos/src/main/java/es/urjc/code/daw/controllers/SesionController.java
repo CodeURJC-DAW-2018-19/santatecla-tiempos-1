@@ -7,16 +7,14 @@ import es.urjc.code.daw.event.EventRepository;
 import es.urjc.code.daw.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
@@ -27,8 +25,10 @@ import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 import es.urjc.code.daw.user.UserService;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -148,10 +148,9 @@ public class SesionController {
     START EVENTS
      */
 
-    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newEvent(Model model, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam String eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-
-        String img = "";
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET, RequestMethod.POST}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String newEvent(Model model, @ModelAttribute Event event, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam Date eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        Event newEvent = new Event(eventName,eventWiki, eventDate);
         if (!multipartFile.isEmpty()) {
             String rootPath = "C://Temp//uploads";
             try {
@@ -159,14 +158,12 @@ public class SesionController {
                 Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
                 Files.write(rutaCompleta, bytes);
                 redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
-                img= multipartFile.getOriginalFilename();
+                newEvent.setEventPhoto(multipartFile.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        Event newEvent = new Event(eventName, eventPhoto, eventWiki, eventDate);
-        newEvent.setEventPhoto(img);
         EventService.save(newEvent);
 
         init(model, request);
