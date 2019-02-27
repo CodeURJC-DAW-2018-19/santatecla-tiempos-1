@@ -736,12 +736,13 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="/addEvent" method="post" enctype="multipart/form-data" >
-									<div class="form-row">
+								<form action="/addEvent" method="post"
+									enctype="multipart/form-data">
+									<div class="form-row">										
 										<div class="col-md-9">
 											<div class="form-group col-md-12">
 												<input type="text" class="form-control"
-													value="" name="eventName" id="inputNameNewEvent"
+													value="" name="name" id="inputNameNewEvent"
 													placeholder="Nombre">
 											</div>
 											<div class="form-group col-md-12">
@@ -766,7 +767,7 @@
 												data-provides="fileinput">
 												<div class="fileinput-new thumbnail img-raised">
 													<img
-														src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+														src=""
 														style="width: 100%" alt="...">
 												</div>
 												<div class="fileinput-preview fileinput-exists thumbnail
@@ -775,14 +776,14 @@
 													<span class="btn btn-raised btn-round btn-default btn-file">
 														<span class="fileinput-new" style="width: 50%">Seleccionar imagen</span>
 														<span class="fileinput-exists" style="width: 50%">Cambiar</span>
-														<input type="file" name="file" /> 
+														<input type="file" name="file" />
 													</span>
 													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
 														data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
 												</div>
 											</div>
 										</div>
-										
+
 										<!--Fin de la subida de imagenes de los eventos-->
 									</div>
 									<button class="btn btn-primary" type="button"
@@ -817,6 +818,7 @@
 									</div>
 									<br>
 									<button type="submit" class="btn btn-primary">ACEPTAR</button>
+									<input type="hidden" name="_csrf" value="{{token}}"/>
 								</form>
 							</div>
 						</div>

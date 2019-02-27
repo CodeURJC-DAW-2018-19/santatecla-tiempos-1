@@ -1,7 +1,12 @@
 package es.urjc.code.daw.event;
 
+import es.urjc.code.daw.category.Category;
+import org.springframework.core.annotation.AliasFor;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="Event")
@@ -17,7 +22,6 @@ public class Event
     }
 
     @Column()
-
     private String name;
 
     @Column
@@ -26,6 +30,10 @@ public class Event
     private String eventWiki;
     @Column
     private Date eventDate;
+
+
+    @OneToMany
+    private List<Category> categories = new ArrayList<>();
 
     public Event(String name) {
         setName(name);

@@ -6,9 +6,6 @@ import es.urjc.code.daw.event.Event;
 import es.urjc.code.daw.event.EventRepository;
 import es.urjc.code.daw.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -24,17 +21,7 @@ import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
 import es.urjc.code.daw.user.UserService;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.awt.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 public class SesionController {
@@ -50,10 +37,10 @@ public class SesionController {
 
     //Services
     @Autowired
-    private CategoryService CategoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    private UserService UserService;
+    private UserService userService;
 
     @RequestMapping(value = "/home", method = {RequestMethod.GET, RequestMethod.POST})
     public String root(Model model, HttpServletRequest request) {
@@ -75,14 +62,14 @@ public class SesionController {
     @RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
     public String newCategory(Model model, @RequestParam String categoryName, HttpServletRequest request) {
         Category newCategory = new Category(categoryName);
-        CategoryService.save(newCategory);
+        categoryService.save(newCategory);
         init(model, request);
         return "home";
     }
 
     @RequestMapping(value = "/deleteCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
     public String deleteCategory(Model model, HttpServletRequest request, @PathVariable long idCategory) {
-        CategoryService.delete(idCategory);
+        categoryService.delete(idCategory);
         init(model, request);
         return "home";
     }
@@ -91,7 +78,7 @@ public class SesionController {
     public String setCategory(Model model, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName) {
         Category category = new Category(categoryName);
         category.setIdCategory(idCategory);
-        CategoryService.save(category);
+        categoryService.save(category);
         init(model, request);
         return "home";
     }
@@ -142,30 +129,29 @@ public class SesionController {
 
 
     @Autowired
-    private EventService EventService;
+    private EventService eventService;
 
     /*
     START EVENTS
      */
 
-    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET, RequestMethod.POST}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String newEvent(Model model, @ModelAttribute Event event, @RequestParam String eventName, @RequestParam String eventWiki, @RequestParam String eventPhoto, @RequestParam Date eventDate, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        Event newEvent = new Event(eventName,eventWiki, eventDate);
-        if (!multipartFile.isEmpty()) {
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
+    public String newEvent(Model model, Event event/*, @RequestParam("file") MultipartFile multipartFile*/, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        /*if (!multipartFile.isEmpty()) {
             String rootPath = "C://Temp//uploads";
             try {
                 byte[] bytes = multipartFile.getBytes();
                 Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
                 Files.write(rutaCompleta, bytes);
                 redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
-                newEvent.setEventPhoto(multipartFile.getOriginalFilename());
+                event.setEventPhoto(multipartFile.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
-        EventService.save(newEvent);
-
+        eventService.save(event);
+       // model.addAllAttributes("addevent", "");
         init(model, request);
         return "redirect:/home";
     }
@@ -173,7 +159,7 @@ public class SesionController {
 
     @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
     public String deleteEvent(Model model, HttpServletRequest request, @PathVariable long idEvent) {
-        EventService.delete(idEvent);
+        eventService.delete(idEvent);
         init(model, request);
         return "home";
     }
@@ -182,7 +168,7 @@ public class SesionController {
     public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName) {
         Event event = new Event(eventName);
         event.setIdEvent(idEvent);
-        EventService.save(event);
+        eventService.save(event);
         init(model, request);
         return "home";
     }
@@ -200,7 +186,7 @@ public class SesionController {
         System.out.println(password);
 
         User NewUser = new User(name, email, password, "ROLE_STUDENT");
-        UserService.save(NewUser);
+        userService.save(NewUser);
 
         return "home";
     }
