@@ -41,30 +41,35 @@ public class DataBaseLoader {
 	        user4=userRepository.save(user4);
         user4=userRepository.findByEmail("noelia@gmail.com");    
         //CATEGORY
-        Category category1 = new Category("Categoria1");
-        Category category2 = new Category("Categoria2");
-        Category category3 = new Category("Categoria3");
-        Category category4 = new Category("Categoria4");
-
-        if (categoryRepository.findByName("Categoria1")==null) {
-        	category1=categoryRepository.save(category1);
-        }
-        category1=categoryRepository.findByName("Categoria1");
+        Category[] cats={new Category("Categoria1"),
+        new Category("Categoria2"),
+        new Category("Categoria3"),
+        new Category("Categoria4"),
+        new Category("Categoria5"),
+        new Category("Categoria6"),
+        new Category("Categoria7"),
+        new Category("Categoria8"),
+        new Category("Categoria9"),
+        new Category("Categoria10"),
+        new Category("Categoria11"),
+        new Category("Categoria12"),
+        new Category("Categoria13"),
+        new Category("Categoria14"),
+        new Category("Categoria15"),
+        new Category("Categoria16"),
+        new Category("Categoria17"),
+        new Category("Categoria18"),
+        new Category("Categoria19"),
+        new Category("Categoria20"),
+        new Category("Categoria21"),
+        new Category("Categoria22"),
+        new Category("Categoria23"),
+        new Category("Categoria24")};
         
-        if (categoryRepository.findByName("Categoria2")==null) {
-        	category2=categoryRepository.save(category2);
+        for(int i=0;i<cats.length;i++){
+        	if (categoryRepository.findByName(cats[i].getName())==null)
+        		categoryRepository.save(cats[i]);
         }
-        category2=categoryRepository.findByName("Categoria2");
-       if (categoryRepository.findByName("Categoria3")==null) {
-        	category3=categoryRepository.save(category3);
-        }
-        category3=categoryRepository.findByName("Categoria3");
-        if (categoryRepository.findByName("Categoria4")==null) {
-        	category4=categoryRepository.save(category4);
-        }
-        category4=categoryRepository.findByName("Categoria4");
-
-        
         //INTERVAL
         Interval i1 = new Interval("Intervalo1","23/12/1989","23/11/1994");
         Interval i2 = new Interval("Intervalo2","2/10/1999","3/11/1995");
