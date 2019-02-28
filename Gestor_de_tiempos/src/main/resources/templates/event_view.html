@@ -1,0 +1,190 @@
+<div id="event" style="display: none" class="content">
+
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <span class="nav-tabs-title">EVENTOS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    {{#eventos}}
+                                    <tr>
+                                        {{#estudiante}}
+                                        <td class="periodIndex">{{-index}}</td>
+                                        <td class="periodContent"><a data-toggle="modal" data-target="#showEventModal{{idEvent}}"
+                                                href="#">{{name}}</a></td>
+                                        <!--Popup SHOW Event-->
+                                        <div class="modal fade" id="showEventModal{{idEvent}}" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-signup" role="document">
+                                                <div class="modal-content">
+                                                    <div class="card card-signup card-plain">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title card-title">Mostar
+                                                                Evento: {{name}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i class="material-icons">clear</i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{/estudiante}}
+                                        {{^estudiante}}
+                                        <td class="periodIndex">{{-index}}</td>
+                                        <td class="periodContent">{{name}}</td>
+                                        {{/estudiante}}
+                                        {{#admin}}
+                                        <td class="td-actions text-right periodButtons">
+
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"
+                                                data-toggle="modal" data-target="#setEventModal{{idEvent}}">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <!--Popup SET Category-->
+                                            <div class="modal fade" id="setEventModal{{idEvent}}" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-signup" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="card card-signup card-plain">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title card-title">Editar
+                                                                    evento</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <i class="material-icons">clear</i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/setEvent{{idEvent}}">
+                                                                    <div class="form-group">
+                                                                        <input name="eventName" type="text" class="form-control"
+                                                                            id="inputNameNewEvent" placeholder="Nombre">
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">EDITAR</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form action="/deleteEvent{{idEvent}}">
+                                                <button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                            <!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                    <i class="material-icons">delete</i> </button>-->
+                                        </td>
+                                        {{/admin}}
+                                    </tr>
+                                    {{/eventos}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {{#admin}}
+                    <button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newEventModal">
+                        <i class="material-icons">add</i>
+                    </button>
+                    {{/admin}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Popup newEvent-->
+{{#admin}}
+<div class="modal fade bd-example-modal-lg" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <h5 class="modal-title card-title">Nuevo Evento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/addEvent" method="post" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="col-md-9">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" value="" name="name" id="inputNameNewEvent"
+                                        placeholder="Nombre">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control datetimepicker" name="eventDate" value=""
+                                        placeholder="Fecha">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" value="" name="eventPhoto" id="inputURLPhotoNewEvent"
+                                        placeholder="URL Foto">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" value="" name="eventWiki" id="inputURLWikiNewEvent"
+                                        placeholder="URL Wiki">
+                                </div>
+                            </div>
+                            <!--Subida de imagenes de los eventos-->
+
+                            <div class="col-md-3">
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail img-raised">
+                                        <img src="" style="width: 100%" alt="...">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail
+                                               img-raised"></div>
+                                    <div>
+                                        <span class="btn btn-raised btn-round btn-default btn-file">
+                                            <span class="fileinput-new" style="width: 50%">Seleccionar imagen</span>
+                                            <span class="fileinput-exists" style="width: 50%">Cambiar</span>
+                                            <input type="file" name="file" />
+                                        </span>
+                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i
+                                                class="fa fa-times"></i>
+                                            Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Fin de la subida de imagenes de los eventos-->
+                        </div>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCategory"
+                            aria-expanded="false" aria-controls="collapseCategory" style="opacity: 0.8; margin: auto">Relación
+                            con
+                            Categorías</button>
+
+                        <div class="collapse" id="collapseCategory">
+                            <div class="form-check text-center">
+                                {{#categoryList}}
+                                <input type="checkbox" name="categories" value="{{name}}">{{name}}<br>
+                                {{/categoryList}}
+                                <input type="hidden" name="selectedCategories" id="selectedCategories">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">ACEPTAR</button>
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/admin}}

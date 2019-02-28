@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Gestor de Tiempos</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0,
+			user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	 crossorigin="anonymous">
+
+	<!-- CSS Files -->
+	<link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="css/demo.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
+<body class="" background="img/bg.jpg">
+	<div class="wrapper">
+		<div class="sidebar" data-color="purple" data-background-color="white" data-image="img/bg.jpg">
+			<div class="logo text-center">Gestor de Tiempos</div>
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+					<li id="nav_category" class="nav-item active"><a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">
+								collections_bookmark </i>
+							<p>Categorías</p>
+						</a></li>
+					<li id="nav_event" class="nav-item"><a class="nav-link" href="#" onclick="goTo('event')"> <i class="material-icons">event</i>
+							<p>Eventos</p>
+						</a></li>
+					<li id="nav_time" class="nav-item"><a class="nav-link" href="#" onclick="goTo('time')"> <i class="material-icons">timeline</i>
+							<p>Tiempo</p>
+						</a></li>
+					<li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">close</i>
+							<p>Vista Intervalo</p>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute
+					fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-wrapper"></div>
+					<div class="collapse navbar-collapse justify-content-end">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<button class="btn btn-round" data-toggle="modal" data-target="#loginModal">
+									{{^estudiante}} Iniciar Sesión {{/estudiante}} {{#estudiante}}
+									{{username}} {{/estudiante}} <i class="material-icons">assignment</i>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+			<!-- CATEGORY -->
+			<div id="category" class="content">
+				<div class="container-fluid">
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-header card-header-tabs card-header-primary">
+								<div class="nav-tabs-navigation">
+									<div class="nav-tabs-wrapper">
+										<span class="nav-tabs-title">CATEGORÍAS</span>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="tab-content">
+									<div class="tab-pane active" id="profile">
+										<table class="table table-hover table-striped">
+											<tbody>
+												{{#categorias}}
+												<tr>
+													{{#estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent"><a data-toggle="modal" data-target="#showCategoryModal{{idCategory}}" href="#">{{name}}</a></td>
+													<!--Popup SHOW Category-->
+													<div class="modal fade" id="showCategoryModal{{idCategory}}" tabindex="-1" role="dialog">
+														<div class="modal-dialog modal-signup" role="document">
+															<div class="modal-content">
+																<div class="card card-signup card-plain">
+																	<div class="modal-header">
+																		<h5 class="modal-title card-title">Show
+																			category: {{name}} </h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<i class="material-icons">clear</i>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													{{/estudiante}}
+													{{^estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent">{{name}}</td>
+													{{/estudiante}}
+													{{#admin}}
+													<td class="td-actions text-right periodButtons">
+
+														<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" data-toggle="modal"
+														 data-target="#setCategoryModal{{idCategory}}">
+															<i class="material-icons">edit</i>
+														</button>
+														<!--Popup SET Category-->
+														<div class="modal fade" id="setCategoryModal{{idCategory}}" tabindex="-1" role="dialog">
+															<div class="modal-dialog modal-signup" role="document">
+																<div class="modal-content">
+																	<div class="card card-signup card-plain">
+																		<div class="modal-header">
+																			<h5 class="modal-title card-title">Editar
+																				categoría</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i class="material-icons">clear</i>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<form action="/setCategory{{idCategory}}">
+																				<div class="form-group">
+																					<input name="categoryName" type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
+																				</div>
+																				<button type="submit" class="btn btn-primary">EDITAR</button>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<form action="/deleteCategory{{idCategory}}">
+															<button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm">
+																<i class="material-icons">delete</i>
+															</button>
+														</form>
+														<!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>-->
+													</td>
+													{{/admin}}
+												</tr>
+												{{/categorias}}
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<input type="button" onclick="location.href='/?oldpage={{nextOldPage}}';" value="Mostrar
+										más" />
+
+								{{#admin}}
+								<button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newCategoryModal">
+									<i class="material-icons">add</i>
+								</button>
+								{{/admin}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END CATEGORY-->
+			<!--TIME-->
+			<div id="time" style="display: none" class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="container-fluid">
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header card-header-tabs card-header-primary">
+										<div class="nav-tabs-navigation">
+											<div class="nav-tabs-wrapper">
+												<span class="nav-tabs-title">INTERVALOS</span>
+											</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="tab-content">
+											<div class="tab-pane active" id="profile">
+												<table class="table table-hover table-striped">
+													<tbody>
+														{{#intervalos}}
+														<tr>
+															<td style="width: 10% !important">{{-index}}</td>
+															{{#estudiante}}
+															<td style="width: 30% !important"><a data-toggle="modal" data-target="#showTimeModal{{idInterval}}" href="#">{{name}}</a></td>
+															<!--Popup SHOW Time-->
+															<div class="modal fade" id="showTimeModal{{idInterval}}" tabindex="-1" role="dialog">
+																<div class="modal-dialog modal-signup" role="document">
+																	<div class="modal-content">
+																		<div class="card card-signup card-plain">
+																			<div class="modal-header">
+																				<h5 class="modal-title card-title">Show
+																					Interval: {{name}} </h5>
+																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																					<i class="material-icons">clear</i>
+																				</button>
+																			</div>
+																			<div class="modal-body">
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															{{/estudiante}}
+															{{^estudiante}}
+															<td style="width: 30% !important">{{name}}</td>
+															{{/estudiante}}
+
+
+															<td style="width: 25% !important">{{start}}</td>
+															<td style="width: 25% !important">{{end}}</td>
+
+															{{#admin}}
+															<td class="td-actions text-right periodButtons">
+																<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm"
+																 data-toggle="modal" data-target="#setIntervalModal{{idInterval}}">
+																	<i class="material-icons">edit</i>
+																</button>
+																<!--Popup SET Category-->
+																<div class="modal fade" id="setIntervalModal{{idInterval}}" tabindex="-1" role="dialog">
+																	<div class="modal-dialog modal-signup" role="document">
+																		<div class="modal-content">
+																			<div class="card card-signup card-plain">
+																				<div class="modal-header">
+																					<h5 class="modal-title card-title">Editar
+																						intervalo</h5>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<i class="material-icons">clear</i>
+																					</button>
+																				</div>
+																				<div class="modal-body">
+																					<form action="/setInterval{{idInterval}}">
+																						<div class="form-row">
+																							<div class="form-group col-md-12">
+																								<input name="intervalName" type="text" class="form-control" id="inputNameNewPeriod" placeholder="Nombre">
+																							</div>
+																							<div class="form-group col-md-6">
+																								<input name="startdate" type="text" class="form-control datetimepicker" value="" placeholder="Fecha de Inicio">
+																							</div>
+																							<div class="form-group col-md-6">
+																								<input name="enddate" type="text" class="form-control datetimepicker" value="" placeholder="Fecha Fin">
+																							</div>
+
+																						</div>
+																						<button type="submit" class="btn btn-primary">ACEPTAR</button>
+																					</form>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<form action="/deleteInterval{{idInterval}}">
+																	<button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm">
+																		<i class="material-icons">delete</i>
+																	</button>
+																</form>
+																<!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>-->
+															</td>
+															{{/admin}}
+														</tr>
+														{{/intervalos}}
+													</tbody>
+												</table>
+											</div>
+										</div>
+										{{#admin}}
+										<button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newPeriodModal">
+											<i class="material-icons">add</i>
+										</button>
+										{{/admin}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--END TIME-->
+			<!--EVENT-->
+			<div id="event" style="display: none" class="content">
+
+				<div class="container-fluid">
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-header card-header-tabs card-header-primary">
+								<div class="nav-tabs-navigation">
+									<div class="nav-tabs-wrapper">
+										<span class="nav-tabs-title">EVENTOS</span>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="tab-content">
+									<div class="tab-pane active" id="profile">
+										<table class="table table-hover table-striped">
+											<tbody>
+												{{#eventos}}
+												<tr>
+													{{#estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent"><a data-toggle="modal" data-target="#showEventModal{{idEvent}}" href="#">{{name}}</a></td>
+													<!--Popup SHOW Event-->
+													<div class="modal fade" id="showEventModal{{idEvent}}" tabindex="-1" role="dialog">
+														<div class="modal-dialog modal-signup" role="document">
+															<div class="modal-content">
+																<div class="card card-signup card-plain">
+																	<div class="modal-header">
+																		<h5 class="modal-title card-title">Mostar
+																			Evento: {{name}}</h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<i class="material-icons">clear</i>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													{{/estudiante}}
+													{{^estudiante}}
+													<td class="periodIndex">{{-index}}</td>
+													<td class="periodContent">{{name}}</td>
+													{{/estudiante}}
+													{{#admin}}
+													<td class="td-actions text-right periodButtons">
+
+														<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" data-toggle="modal"
+														 data-target="#setEventModal{{idEvent}}">
+															<i class="material-icons">edit</i>
+														</button>
+														<!--Popup SET Category-->
+														<div class="modal fade" id="setEventModal{{idEvent}}" tabindex="-1" role="dialog">
+															<div class="modal-dialog modal-signup" role="document">
+																<div class="modal-content">
+																	<div class="card card-signup card-plain">
+																		<div class="modal-header">
+																			<h5 class="modal-title card-title">Editar
+																				evento</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<i class="material-icons">clear</i>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<form action="/setEvent{{idEvent}}">
+																				<div class="form-group">
+																					<input name="eventName" type="text" class="form-control" id="inputNameNewEvent" placeholder="Nombre">
+																				</div>
+																				<button type="submit" class="btn btn-primary">EDITAR</button>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<form action="/deleteEvent{{idEvent}}">
+															<button type="submit" title="Remove" class="btn btn-danger btn-link btn-sm">
+																<i class="material-icons">delete</i>
+															</button>
+														</form>
+														<!--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                                            <i class="material-icons">delete</i> </button>-->
+													</td>
+													{{/admin}}
+												</tr>
+												{{/eventos}}
+											</tbody>
+										</table>
+									</div>
+								</div>
+								{{#admin}}
+								<button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newEventModal">
+									<i class="material-icons">add</i>
+								</button>
+								{{/admin}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--END TIME-->
+			<!--VIEW-->
+			<div id="view" style="display: none" class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="container-fluid">
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header card-header-primary">
+										<h4 class="card-title">Intervalo 1</h4>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="row">
+												<div class="col-md-10">
+													<div class="form-group">
+														<label class="bmd-label-floating">Nombre</label> <input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+														<i class="material-icons">delete</i>
+													</button>
+												</div>
+												<div class="col-md-5 card">
+													<div class="card-header card-header-icon card-header-success">
+														<div class="card-icon">
+															<i class="material-icons">language</i>
+														</div>
+													</div>
+													<div class="card-body">
+														<h4 class="card-title">Subintervalos</h4>
+														<ul>
+															<li>Intervalo 1
+																<ul>
+																	<li>Intervalo 1.1</li>
+																	<li>Intervalo 1.2</li>
+																</ul>
+															</li>
+															<li>Intervalo 2
+																<ul>
+																	<li>Intervalo 2.1</li>
+																	<li>Intervalo 2.2</li>
+																</ul>
+															</li>
+															<li>Intervalo 3
+																<ul>
+																	<li>Intervalo 3.1</li>
+																	<li>Intervalo 3.2</li>
+																</ul>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<div class="col-md-7">
+													<div class="row">
+
+														<div class="form-group col-md-10">
+															<label class="bmd-label">Fecha de Inicio</label> <input type="text" class="form-control datetimepicker"
+															 value="" placeholder="">
+														</div>
+														<div class="form-group col-md-10">
+															<div class="row">
+																<div class="col-md-7">
+																	<label class="bmd-label" style="font-size: 15px">Fecha
+																		de fin</label> <br> <input id="dateDisabled" type="text" class="form-control datetimepicker" value=""
+																	 placeholder="Fecha de fin">
+																</div>
+																<div class="form-check col-md-5">
+																	<label class="form-check-label"> <input id="actualidad" class="form-check-input" type="checkbox" value="">
+																		Actualidad <span class="form-check-sign"> <span class="check"></span>
+																		</span>
+																	</label>
+																</div>
+
+															</div>
+														</div>
+														<div class="col-md-5"></div>
+														<div class="col-md-7 text-center">
+															<button class="btn btn-primary" style="width: 150px">Enviar
+																a Tiempo</button>
+															<br>
+															<button class="btn btn-primary" style="width: 150px">Visualizar</button>
+															<br>
+															<button class="btn btn-primary" style="width: 150px">Gráfico</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<button class="btn btn-primary btn-fab btn-fab btn-round" data-toggle="modal" data-target="#newEventModal">
+												<i class="material-icons">add</i>
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--END VIEW-->
+		</div>
+		<!--POPUPS-->
+		<!-- Popup login-->
+		<div class="modal fade" id="loginModal" tabindex="-1" role="">
+			<div id="loginModalContent1" class="modal-dialog modal-login" role="document">
+				<div class="modal-content">
+					<div class="card card-signup card-plain">
+						<div class="modal-header">
+							<div class="card-header card-header-primary text-center" id="headerLogin">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<i class="material-icons">clear</i>
+								</button>
+								<h4 class="card-title">{{^estudiante}}Iniciar
+									Sesión{{/estudiante}} {{#estudiante}}Perfil{{/estudiante}}</h4>
+							</div>
+						</div>
+						{{^estudiante}}
+						<div class="modal-body">
+							<form method="post" action="/home">
+								<div class="card-body">
+
+									<div class="form-group bmd-form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="material-icons">email</i>
+												</div>
+											</div>
+											<input id="inputEmail" name="email" type="text" class="form-control" placeholder="Email..." required />
+										</div>
+									</div>
+									<div class="form-group bmd-form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="material-icons">lock_outline</i>
+												</div>
+											</div>
+											<input id="inputPassword" class="form-control" name="password" type="password" placeholder="Password..."
+											 required />
+										</div>
+									</div>
+									<input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión" /> <input type="hidden"
+									 name="_csrf" value="{{token}}" />
+								</div>
+							</form>
+							<div class="modal-footer justify-content-center">
+								<a onclick="registerview('loginModalContent2')" href="#" class="btn btn-primary btn-link btn-wd btn-lg">Registrarse</a>
+							</div>
+						</div>
+						{{/estudiante}} {{#estudiante}}
+						<div class="modal-body">
+							<p>{{username}}</p>
+							<form method="post" action="/logout">
+								<input id="inputSubmit" class="btn btn-primary btn-block" type="submit" value="Cerrar Sesión" /> <input type="hidden"
+								 name="_csrf" value="{{token}}" />
+							</form>
+						</div>
+						{{/estudiante}}
+
+					</div>
+				</div>
+			</div>
+			{{^estudiante}}
+			<div id="loginModalContent2" style="display: none" class="modal-dialog modal-login" role="document">
+				<div class="modal-content">
+					<div class="card card-signup card-plain">
+						<div class="modal-header">
+							<div class="card-header card-header-primary text-center" id="headerLogin">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<i class="material-icons">clear</i>
+								</button>
+								<h4 class="card-title">REGISTRARSE</h4>
+							</div>
+						</div>
+						<div class="modal-body">
+							<form class="form" action="/addUser">
+								<div class="card-body">
+									<div class="form-group bmd-form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="material-icons">person</i>
+												</div>
+											</div>
+											<input name="name" type="text" class="form-control" placeholder="Name...">
+										</div>
+									</div>
+									<div class="form-group bmd-form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="material-icons">email</i>
+												</div>
+											</div>
+											<input name="email" type="text" class="form-control" placeholder="Email...">
+										</div>
+									</div>
+									<div class="form-group bmd-form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="material-icons">lock_outline</i>
+												</div>
+											</div>
+											<input name="password" type="password" placeholder="Password..." class="form-control">
+										</div>
+									</div>
+									<input onclick="registerview('loginModalContent1')" id="registerSubmit" class="btn btn-primary btn-block" type="submit"
+									 value="Registrarse">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			{{/estudiante}}
+		</div>
+
+		<!--Popup more time -->
+		{{#admin}}
+		<div class="modal fade" id="newPeriodModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-signup" role="document">
+				<div class="modal-content">
+					<div class="card card-signup card-plain">
+						<div class="modal-header">
+							<h5 class="modal-title card-title">Nuevo Intervalo</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<i class="material-icons">clear</i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="/addInterval">
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<input name="intervalName" type="text" class="form-control" id="inputNameNewPeriod" placeholder="Nombre">
+									</div>
+									<div class="form-group col-md-6">
+										<input name="startdate" type="text" class="form-control datetimepicker" value="" placeholder="Fecha de Inicio">
+									</div>
+									<div class="form-group col-md-6">
+										<input name="enddate" type="text" class="form-control datetimepicker" value="" placeholder="Fecha Fin">
+									</div>
+
+								</div>
+								<button type="submit" class="btn btn-primary">ACEPTAR</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Popup newCategory-->
+		<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-signup" role="document">
+				<div class="modal-content">
+					<div class="card card-signup card-plain">
+						<div class="modal-header">
+							<h5 class="modal-title card-title">Nueva Categoría</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<i class="material-icons">clear</i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="/addCategory">
+								<div class="form-group">
+									<input name="categoryName" type="text" class="form-control" id="inputNameNewCategory" placeholder="Nombre">
+								</div>
+								<button type="submit" class="btn btn-primary">ACEPTAR</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Popup newEvent-->
+		<div class="modal fade bd-example-modal-lg" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		 aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="card card-signup card-plain">
+						<div class="modal-header">
+							<h5 class="modal-title card-title">Nuevo Evento</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<i class="material-icons">clear</i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="/addEvent" method="post" enctype="multipart/form-data">
+								<div class="form-row">
+									<div class="col-md-9">
+										<div class="form-group col-md-12">
+											<input type="text" class="form-control" value="" name="name" id="inputNameNewEvent" placeholder="Nombre">
+										</div>
+										<div class="form-group col-md-12">
+											<input type="text" class="form-control datetimepicker" name="eventDate" value="" placeholder="Fecha">
+										</div>
+										<div class="form-group col-md-12">
+											<input type="text" class="form-control" value="" name="eventPhoto" id="inputURLPhotoNewEvent" placeholder="URL Foto">
+										</div>
+										<div class="form-group col-md-12">
+											<input type="text" class="form-control" value="" name="eventWiki" id="inputURLWikiNewEvent" placeholder="URL Wiki">
+										</div>
+									</div>
+									<!--Subida de imagenes de los eventos-->
+
+									<div class="col-md-3">
+										<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+											<div class="fileinput-new thumbnail img-raised">
+												<img src="" style="width: 100%" alt="...">
+											</div>
+											<div class="fileinput-preview fileinput-exists thumbnail
+													img-raised"></div>
+											<div>
+												<span class="btn btn-raised btn-round btn-default btn-file">
+													<span class="fileinput-new" style="width: 50%">Seleccionar imagen</span>
+													<span class="fileinput-exists" style="width: 50%">Cambiar</span>
+													<input type="file" name="file" />
+												</span>
+												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>
+													Remove</a>
+											</div>
+										</div>
+									</div>
+
+									<!--Fin de la subida de imagenes de los eventos-->
+								</div>
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCategory"
+								 aria-expanded="false" aria-controls="collapseCategory" style="opacity: 0.8; margin: auto">Relación con
+									Categorías</button>
+
+								<div class="collapse" id="collapseCategory">
+									<div class="form-check text-center">
+										{{#categoryList}}
+										<input type="checkbox" name="categories" value="{{name}}">{{name}}<br>
+										{{/categoryList}}
+										<input type="hidden" name="selectedCategories" id="selectedCategories">
+									</div>
+								</div>
+								<br>
+								<button type="submit" class="btn btn-primary">ACEPTAR</button>
+								<input type="hidden" name="_csrf" value="{{token}}" />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/admin}}
+
+	</div>
+	<!--END POPUPS-->
+	<!--   Core JS Files   -->
+	<script src="js/core/jquery.min.js"></script>
+	<script src="js/core/popper.min.js"></script>
+	<script src="js/core/bootstrap-material-design.min.js"></script>
+	<script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	<!-- Plugin for the momentJs  -->
+	<script src="js/plugins/moment.min.js"></script>
+	<!--  Plugin for Sweet Alert -->
+	<script src="js/plugins/sweetalert2.js"></script>
+	<!-- Forms Validations Plugin -->
+	<script src="js/plugins/jquery.validate.min.js"></script>
+	<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+	<script src="js/plugins/jquery.bootstrap-wizard.js"></script>
+	<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+	<script src="js/plugins/bootstrap-selectpicker.js"></script>
+	<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+	<script src="js/plugins/bootstrap-datetimepicker.min.js"></script>
+	<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+	<script src="js/plugins/jquery.dataTables.min.js"></script>
+	<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+	<script src="js/plugins/bootstrap-tagsinput.js"></script>
+	<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+	<script src="js/plugins/jasny-bootstrap.min.js"></script>
+	<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+	<script src="js/plugins/fullcalendar.min.js"></script>
+	<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+	<script src="js/plugins/jquery-jvectormap.js"></script>
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="js/plugins/nouislider.min.js"></script>
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<!-- Library for adding dinamically elements -->
+	<script src="js/plugins/arrive.min.js"></script>
+	<!--  Google Maps Plugin    -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<!-- Chartist JS -->
+	<script src="js/plugins/chartist.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="js/plugins/bootstrap-notify.js"></script>
+	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+	<script src="js/demo.js"></script>
+	<script src="js/controller.js"></script>
+	<script>
+		$(document).ready(function () {
+
+			$().ready(function () {
+				$sidebar = $('.sidebar');
+				$sidebar_img_container = $sidebar.find('.sidebar-background');
+				$full_page = $('.full-page');
+				$sidebar_responsive = $('body > .navbar-collapse');
+				window_width = $(window).width();
+				fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+				if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+					if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+						$('.fixed-plugin .dropdown').addClass('open');
+					}
+				}
+				$('.fixed-plugin a').click(function (event) {
+					// Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+					if ($(this).hasClass('switch-trigger')) {
+						if (event.stopPropagation) {
+							event.stopPropagation();
+						}
+						else if (window.event) {
+							window.event.cancelBubble = true;
+						}
+					}
+				});
+				$('.fixed-plugin .active-color span').click(function () {
+					$full_page_background = $('.full-page-background');
+					$(this).siblings().removeClass('active');
+					$(this).addClass('active');
+					var new_color = $(this).data('color');
+					if ($sidebar.length != 0) {
+						$sidebar.attr('data-color', new_color);
+					}
+					if ($full_page.length != 0) {
+						$full_page.attr('filter-color', new_color);
+					}
+					if ($sidebar_responsive.length != 0) {
+						$sidebar_responsive.attr('data-color', new_color);
+					}
+				});
+				$('.fixed-plugin .background-color .badge').click(function () {
+					$(this).siblings().removeClass('active');
+					$(this).addClass('active');
+					var new_color = $(this).data('background-color');
+					if ($sidebar.length != 0) {
+						$sidebar.attr('data-background-color', new_color);
+					}
+				});
+				$('.fixed-plugin .img-holder').click(function () {
+					$full_page_background = $('.full-page-background');
+					$(this).parent('li').siblings().removeClass('active');
+					$(this).parent('li').addClass('active');
+					var new_image = $(this).find("img").attr('src');
+					if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+						$sidebar_img_container.fadeOut('fast', function () {
+							$sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+							$sidebar_img_container.fadeIn('fast');
+						});
+					}
+					if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+						var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+						$full_page_background.fadeOut('fast', function () {
+							$full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+							$full_page_background.fadeIn('fast');
+						});
+					}
+					if ($('.switch-sidebar-image input:checked').length == 0) {
+						var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+						var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+						$sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+						$full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+					}
+					if ($sidebar_responsive.length != 0) {
+						$sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+					}
+				});
+				$('.switch-sidebar-image input').change(function () {
+					$full_page_background = $('.full-page-background');
+					$input = $(this);
+					if ($input.is(':checked')) {
+						if ($sidebar_img_container.length != 0) {
+							$sidebar_img_container.fadeIn('fast');
+							$sidebar.attr('data-image', '#');
+						}
+						if ($full_page_background.length != 0) {
+							$full_page_background.fadeIn('fast');
+							$full_page.attr('data-image', '#');
+						}
+						background_image = true;
+					}
+					else {
+						if ($sidebar_img_container.length != 0) {
+							$sidebar.removeAttr('data-image');
+							$sidebar_img_container.fadeOut('fast');
+						}
+						if ($full_page_background.length != 0) {
+							$full_page.removeAttr('data-image', '#');
+							$full_page_background.fadeOut('fast');
+						}
+						background_image = false;
+					}
+				});
+				$('.switch-sidebar-mini input').change(function () {
+					$body = $('body');
+					$input = $(this);
+					if (md.misc.sidebar_mini_active == true) {
+						$('body').removeClass('sidebar-mini');
+						md.misc.sidebar_mini_active = false;
+						$('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+					}
+					else {
+						$('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+						setTimeout(function () {
+							$('body').addClass('sidebar-mini');
+							md.misc.sidebar_mini_active = true;
+						}, 300);
+					}
+					// we simulate the window Resize so the charts will get updated in realtime.
+					var simulateWindowResize = setInterval(function () {
+						window.dispatchEvent(new Event('resize'));
+					}, 180);
+					// we stop the simulation of Window Resize after the animations are completed
+					setTimeout(function () {
+						clearInterval(simulateWindowResize);
+					}, 1000);
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			// Javascript method's body can be found in assets/js/demos.js
+			md.initDashboardPageCharts();
+		});
+
+	</script>
+</body>
+
+</html>
