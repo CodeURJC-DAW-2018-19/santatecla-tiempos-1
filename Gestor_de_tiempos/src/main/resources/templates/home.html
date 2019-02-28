@@ -222,7 +222,7 @@
 															<td style="width: 30% !important">{{name}}</td>
 															{{/estudiante}}
 
-															
+
 															<td style="width: 25% !important">{{start}}</td>
 															<td style="width: 25% !important">{{end}}</td>
 
@@ -316,14 +316,17 @@
 													{{#estudiante}}
 													<td class="periodIndex">{{-index}}</td>
 													<td class="periodContent"><a data-toggle="modal" data-target="#showEventModal{{idEvent}}" href="#">{{name}}</a></td>
-													<!--Popup SET Category-->
+													<!--Popup SHOW Event-->
 													<div class="modal fade" id="showEventModal{{idEvent}}" tabindex="-1" role="dialog">
 														<div class="modal-dialog modal-signup" role="document">
 															<div class="modal-content">
 																<div class="card card-signup card-plain">
 																	<div class="modal-header">
 																		<h5 class="modal-title card-title">Mostar
-																			evento</h5>
+																			Evento: {{name}}</h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<i class="material-icons">clear</i>
+																		</button>
 																	</div>
 																	<div class="modal-body">
 
