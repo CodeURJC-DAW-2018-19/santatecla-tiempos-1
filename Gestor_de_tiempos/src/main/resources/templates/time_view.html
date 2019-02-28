@@ -15,10 +15,21 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="profile">
                                     <table class="table table-hover table-striped">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th class="text-left periodIndex">#</th>
+                                                <th style="width: 35% !important">Nombre</th>
+                                                <th style="width: 25% !important">Fecha de Inicio</th>
+                                                <th style="width: 25% !important">Fecha de Fin</th>
+                                                {{#admin}}
+                                                <th class="text-left periodButtons">Actions</th>
+                                                {{/admin}}
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             {{#intervalos}}
                                             <tr>
-                                                <td style="width: 10% !important">{{-index}}</td>
+                                                <td style="width: 5% !important">{{-index}}</td>
                                                 {{#estudiante}}
                                                 <td style="width: 30% !important"><a data-toggle="modal" data-target="#showTimeModal{{idInterval}}"
                                                         href="#">{{name}}</a></td>
@@ -45,7 +56,7 @@
                                                 </div>
                                                 {{/estudiante}}
                                                 {{^estudiante}}
-                                                <td style="width: 30% !important">{{name}}</td>
+                                                <td style="width: 35% !important">{{name}}</td>
                                                 {{/estudiante}}
 
 
