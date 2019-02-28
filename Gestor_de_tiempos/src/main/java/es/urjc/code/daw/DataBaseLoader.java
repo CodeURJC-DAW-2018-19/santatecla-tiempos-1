@@ -7,6 +7,7 @@ import es.urjc.code.daw.interval.Interval;
 import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
+import es.urjc.code.daw.event.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,8 @@ public class DataBaseLoader {
     @Autowired private UserRepository userRepository;
     @Autowired private CategoryRepository categoryRepository;
     @Autowired private IntervalRepository intervalRepository;
+    @Autowired private EventRepository eventRepository;
+
 
     @PostConstruct
     public void init(){
@@ -71,17 +74,31 @@ public class DataBaseLoader {
         		categoryRepository.save(cats[i]);
         }
         //INTERVAL
-        Interval i1 = new Interval("Intervalo1","23/12/1989","23/11/1994");
-        Interval i2 = new Interval("Intervalo2","2/10/1999","3/11/1995");
+        Interval [] intervals = {
+        		new Interval("Intervalo 1","23/12/1989","23/11/1994"),
+        		new Interval("Intervalo 2","2/10/1999","3/11/1995"),
+        		new Interval("Intervalo 3","23/12/1989","23/11/1994"),
+        		new Interval("Intervalo 4","2/10/1999","3/11/1995"),
+        		new Interval("Intervalo 5","23/12/1989","23/11/1994"),
+        		new Interval("Intervalo 6","2/10/1999","3/11/1995"),
+        };
+        for(int i=0;i<intervals.length;i++){
+        	if (intervalRepository.findByName(intervals[i].getName())==null)
+        		intervalRepository.save(intervals[i]);
+        }
 
-        if (intervalRepository.findByName("Intervalo1")==null) {
-        	i1=intervalRepository.save(i1);
+        //EVENTS
+        Event [] events = {new Event("Evento 1","Wiki 1", "Date 1"),
+        		new Event("Evento 2","Wiki 2", "Date 2"),
+        		new Event("Evento 3","Wiki 3", "Date 3"),
+        		new Event("Evento 4","Wiki 4", "Date 4"),
+        		new Event("Evento 5","Wiki 5", "Date 5"),
+        		new Event("Evento 6","Wiki 6", "Date 6"),
+        		new Event("Evento 7","Wiki 7", "Date 7"),
+        };
+        for(int i=0;i<events.length;i++){
+        	if (eventRepository.findByName(events[i].getName())==null)
+        		eventRepository.save(events[i]);
         }
-        i1=intervalRepository.findByName("Intervalo1");
-        
-        if (intervalRepository.findByName("Intervalo2")==null) {
-        	i2=intervalRepository.save(i2);
-        }
-        i2=intervalRepository.findByName("Intervalo2");
     }
 }

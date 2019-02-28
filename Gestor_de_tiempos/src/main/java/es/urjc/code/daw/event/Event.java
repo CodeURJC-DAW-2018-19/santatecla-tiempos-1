@@ -29,8 +29,8 @@ public class Event
     @Column(columnDefinition = "")
     private String eventWiki;
     @Column
-    private Date eventDate;
-
+   // private Date eventDate;
+    private String eventDate;
 
     @OneToMany
     private List<Category> categories = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Event
         setName(name);
     }
 
-    public Event(String name, String eventWiki, Date eventDate) {
+    public Event(String name, String eventWiki, String eventDate) {
         setName(name);
         setEventWiki(eventWiki);
         setEventDate(eventDate);
@@ -53,11 +53,11 @@ public class Event
         this.categories = categories;
     }
 
-    public Date getEventDate() {
+    public String  getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
