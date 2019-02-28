@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 public class SesionController {
@@ -52,14 +53,14 @@ public class SesionController {
     private UserService userService;
 
     @RequestMapping(value = "/home", method = {RequestMethod.GET, RequestMethod.POST})
-    public String root(Model model,Pageable page, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
-        init(model,page, request,oldpage);
+    public String root(Model model, Pageable page, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String index(Model model,Pageable page, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
-        init(model,page, request,oldpage);
+    public String index(Model model, Pageable page, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model, page, request, oldpage);
 
         return "home";
     }
@@ -69,26 +70,26 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newCategory(Model model,Pageable page, @RequestParam String categoryName, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String newCategory(Model model, Pageable page, @RequestParam String categoryName, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Category newCategory = new Category(categoryName);
         categoryService.save(newCategory);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/deleteCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteCategory(Model model,Pageable page, HttpServletRequest request, @PathVariable long idCategory,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String deleteCategory(Model model, Pageable page, HttpServletRequest request, @PathVariable long idCategory, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         categoryService.delete(idCategory);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setCategory(Model model,Pageable page, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String setCategory(Model model, Pageable page, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Category category = new Category(categoryName);
         category.setIdCategory(idCategory);
         categoryService.save(category);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
@@ -101,32 +102,32 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addInterval", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newInterval(Model model,Pageable page, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
-        
+    public String newInterval(Model model, Pageable page, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+
 
         Interval newInterval = new Interval(intervalName, startdate, enddate);
         intervalRepository.save(newInterval);
-        
-        init(model,page, request,oldpage);
+
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/deleteInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteInterval(Model model,Pageable page, HttpServletRequest request, @PathVariable long idInterval,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String deleteInterval(Model model, Pageable page, HttpServletRequest request, @PathVariable long idInterval, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         intervalRepository.delete(idInterval);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setInterval(Model model,Pageable page, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String setInterval(Model model, Pageable page, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         //intervalRepository.findOne(idInterval).setName(intervalName);
         //intervalRepository.findOne(idInterval).setStart(startdate);
         //intervalRepository.findOne(idInterval).setEnd(enddate);
         Interval newInterval = new Interval(intervalName, startdate, enddate);
         newInterval.setIdInterval(idInterval);
         intervalRepository.save(newInterval);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
@@ -142,14 +143,23 @@ public class SesionController {
     START EVENTS
      */
 
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET})
+    public String newEvent(Model model, Pageable page, Event event, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage)
+    {
+        init(model, page, request, oldpage);
+        return "redirect:/home";
+    }
+
     @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
-    public String newEvent(Model model,Pageable page, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String newEvent(Model model, Pageable page, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+
+        //Set the photo for the event.
         if (!multipartFile.isEmpty()) {
             String rootPath = "C://Temp//uploads";
             try {
                 byte[] bytes = multipartFile.getBytes();
-                Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
-                Files.write(rutaCompleta, bytes);
+                Path fullPath = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
+                Files.write(fullPath, bytes);
                 redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
                 event.setEventPhoto(multipartFile.getOriginalFilename());
             } catch (IOException e) {
@@ -158,24 +168,24 @@ public class SesionController {
         }
 
         eventService.save(event);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "redirect:/home";
     }
 
 
     @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteEvent(Model model,Pageable page, HttpServletRequest request, @PathVariable long idEvent,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String deleteEvent(Model model, Pageable page, HttpServletRequest request, @PathVariable long idEvent, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         eventService.delete(idEvent);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setEvent(Model model,Pageable page, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public String setEvent(Model model, Pageable page, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Event event = new Event(eventName);
         event.setIdEvent(idEvent);
         eventService.save(event);
-        init(model,page, request,oldpage);
+        init(model, page, request, oldpage);
         return "home";
     }
 
@@ -185,9 +195,9 @@ public class SesionController {
 
 
     @RequestMapping(value = "/addUser")
-    public String addUser(Model model,Pageable page, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
-        init(model,page, request,oldpage);
-        
+    public String addUser(Model model, Pageable page, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model, page, request, oldpage);
+
 
         User NewUser = new User(name, email, password, "ROLE_STUDENT");
         userService.save(NewUser);
@@ -197,29 +207,34 @@ public class SesionController {
 
     //Método que inicializa la bbdd de toda la página
     //Ir añadiendo campos
-    public void init(Model model,Pageable page, HttpServletRequest request,
-			@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+    public void init(Model model, Pageable page, HttpServletRequest request,
+                     @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
         model.addAttribute("token", token.getToken());
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName(); //get logged in username
         String name = "LOGIN";
+
         if (userRepository.findByEmail(email) != null) {
             name = userRepository.findByEmail(email).getName();
         }
+
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
         model.addAttribute("estudiante", (request.isUserInRole("STUDENT") ||
                 request.isUserInRole("ADMIN")));
         model.addAttribute("username", name);
 
         //model.addAttribute("categorias", categoryRepository.findAll());//Vuelve a cargar las categorías
-	     //Page<Category> categorias = categoryRepository.findByUserAndStatus(userRepository.fin, "Recogido", new PageRequest(0,10*(oldpage+1)));
-	     Page<Category> categorias = categoryRepository.findAll(new PageRequest(0,10*(oldpage+1)));
-	     
+        //Page<Category> categorias = categoryRepository.findByUserAndStatus(userRepository.fin, "Recogido", new PageRequest(0,10*(oldpage+1)));
+        Page<Category> categorias = categoryRepository.findAll(new PageRequest(0, 10 * (oldpage + 1)));
+
         model.addAttribute("categorias", categorias);
-        model.addAttribute("nextOldPage",oldpage+1);
-        model.addAttribute("intervalos", intervalRepository.findAll());//Vuelve a cargar los intervalos
-        model.addAttribute("eventos", eventRepository.findAll());//Vuelve a cargar los eventos
+        model.addAttribute("nextOldPage", oldpage + 1);
+        model.addAttribute("intervalos", intervalRepository.findAll());//Load again the intervals.
+        model.addAttribute("eventos", eventRepository.findAll());//Load again.
+        model.addAttribute("categoryList", categoryRepository.findAllByOrderByIdCategoryAsc()); //Load the list of categories assigned to the events.
+
     }
 
 }

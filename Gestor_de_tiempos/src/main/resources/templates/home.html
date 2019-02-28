@@ -184,9 +184,11 @@
 											</table>
 										</div>
 									</div>
-									
-									<input type="button" onclick="location.href='/?oldpage={{nextOldPage}}';" value="Mostrar más" />
-																
+
+									<input type="button"
+										onclick="location.href='/?oldpage={{nextOldPage}}';" value="Mostrar
+										más" />
+
 									{{#admin}}
 									<button class="btn btn-primary btn-fab btn-fab btn-round"
 										data-toggle="modal" data-target="#newCategoryModal">
@@ -740,7 +742,7 @@
 							<div class="modal-body">
 								<form action="/addEvent" method="post"
 									enctype="multipart/form-data">
-									<div class="form-row">										
+									<div class="form-row">
 										<div class="col-md-9">
 											<div class="form-group col-md-12">
 												<input type="text" class="form-control"
@@ -796,31 +798,15 @@
 
 									<div class="collapse" id="collapseCategory">
 										<div class="form-check text-center">
-											<label class="form-check-label"> <input
-													class="form-check-input" type="checkbox" value="">Categoría
-												1 <span class="form-check-sign"> <span class="check"></span>
-												</span>
-											</label> <br>
-											<br> <label class="form-check-label"> <input
-													class="form-check-input" type="checkbox" value="">Categoría
-												2 <span class="form-check-sign"> <span class="check"></span>
-												</span>
-											</label> <br>
-											<br> <label class="form-check-label"> <input
-													class="form-check-input" type="checkbox" value="">Categoría
-												3 <span class="form-check-sign"> <span class="check"></span>
-												</span>
-											</label> <br>
-											<br> <label class="form-check-label"> <input
-													class="form-check-input" type="checkbox" value="">Categoría
-												4 <span class="form-check-sign"> <span class="check"></span>
-												</span>
-											</label>
+											{{#categoryList}}
+											<input type="checkbox" name="categories" value="{{name}}">{{name}}<br>
+											{{/categoryList}}
+											<input type="hidden" name="selectedCategories" id="selectedCategories">
 										</div>
 									</div>
 									<br>
 									<button type="submit" class="btn btn-primary">ACEPTAR</button>
-									<input type="hidden" name="_csrf" value="{{token}}"/>
+									<input type="hidden" name="_csrf" value="{{token}}" />
 								</form>
 							</div>
 						</div>
