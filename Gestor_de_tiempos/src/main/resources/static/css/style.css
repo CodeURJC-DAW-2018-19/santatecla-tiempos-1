@@ -1,13 +1,15 @@
 .periodIndex{
-    width: 10% !important;
+    width: 5% !important;
 }
 .periodContent{
-    width: 80% !important;
+    width: 85% !important;
 }
 .periodButtons{
     width: 10% !important;
 }
-
+.mostrarmas{
+    font-size: 15px !important;
+}
 
 
 
