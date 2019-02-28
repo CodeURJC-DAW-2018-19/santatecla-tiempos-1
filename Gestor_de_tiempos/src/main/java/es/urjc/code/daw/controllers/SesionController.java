@@ -6,6 +6,9 @@ import es.urjc.code.daw.event.Event;
 import es.urjc.code.daw.event.EventRepository;
 import es.urjc.code.daw.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -49,16 +52,16 @@ public class SesionController {
     private UserService userService;
 
     @RequestMapping(value = "/home", method = {RequestMethod.GET, RequestMethod.POST})
-    public String root(Model model, HttpServletRequest request) {
-        init(model, request);
+    public String root(Model model,Pageable page, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model,page, request,oldpage);
         return "home";
     }
 
-    @RequestMapping(value = "/index", method = {RequestMethod.GET, RequestMethod.POST})
-    public String index(Model model, HttpServletRequest request) {
-        init(model, request);
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    public String index(Model model,Pageable page, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model,page, request,oldpage);
 
-        return "index";
+        return "home";
     }
 
     /*
@@ -66,26 +69,26 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newCategory(Model model, @RequestParam String categoryName, HttpServletRequest request) {
+    public String newCategory(Model model,Pageable page, @RequestParam String categoryName, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Category newCategory = new Category(categoryName);
         categoryService.save(newCategory);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/deleteCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteCategory(Model model, HttpServletRequest request, @PathVariable long idCategory) {
+    public String deleteCategory(Model model,Pageable page, HttpServletRequest request, @PathVariable long idCategory,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         categoryService.delete(idCategory);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setCategory(Model model, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName) {
+    public String setCategory(Model model,Pageable page, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Category category = new Category(categoryName);
         category.setIdCategory(idCategory);
         categoryService.save(category);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
@@ -98,34 +101,32 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addInterval", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newInterval(Model model, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request) {
-        System.out.println("\n0:\n");
+    public String newInterval(Model model,Pageable page, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        
 
         Interval newInterval = new Interval(intervalName, startdate, enddate);
-        System.out.println("1:" + newInterval.toString());
         intervalRepository.save(newInterval);
-        System.out.println("2:" + newInterval.toString());
-
-        init(model, request);
+        
+        init(model,page, request,oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/deleteInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteInterval(Model model, HttpServletRequest request, @PathVariable long idInterval) {
+    public String deleteInterval(Model model,Pageable page, HttpServletRequest request, @PathVariable long idInterval,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         intervalRepository.delete(idInterval);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setInterval(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate) {
+    public String setInterval(Model model,Pageable page, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         //intervalRepository.findOne(idInterval).setName(intervalName);
         //intervalRepository.findOne(idInterval).setStart(startdate);
         //intervalRepository.findOne(idInterval).setEnd(enddate);
         Interval newInterval = new Interval(intervalName, startdate, enddate);
         newInterval.setIdInterval(idInterval);
         intervalRepository.save(newInterval);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
@@ -142,7 +143,7 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
-    public String newEvent(Model model, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public String newEvent(Model model,Pageable page, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         if (!multipartFile.isEmpty()) {
             String rootPath = "C://Temp//uploads";
             try {
@@ -157,24 +158,24 @@ public class SesionController {
         }
 
         eventService.save(event);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "redirect:/home";
     }
 
 
     @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteEvent(Model model, HttpServletRequest request, @PathVariable long idEvent) {
+    public String deleteEvent(Model model,Pageable page, HttpServletRequest request, @PathVariable long idEvent,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         eventService.delete(idEvent);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
     @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName) {
+    public String setEvent(Model model,Pageable page, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName,@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         Event event = new Event(eventName);
         event.setIdEvent(idEvent);
         eventService.save(event);
-        init(model, request);
+        init(model,page, request,oldpage);
         return "home";
     }
 
@@ -184,11 +185,9 @@ public class SesionController {
 
 
     @RequestMapping(value = "/addUser")
-    public String addUser(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
-        init(model, request);
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(password);
+    public String addUser(Model model,Pageable page, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
+        init(model,page, request,oldpage);
+        
 
         User NewUser = new User(name, email, password, "ROLE_STUDENT");
         userService.save(NewUser);
@@ -198,11 +197,11 @@ public class SesionController {
 
     //Método que inicializa la bbdd de toda la página
     //Ir añadiendo campos
-    public void init(Model model, HttpServletRequest request) {
+    public void init(Model model,Pageable page, HttpServletRequest request,
+			@RequestParam(name = "oldpage", required = false, defaultValue = "0") Integer oldpage) {
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
         model.addAttribute("token", token.getToken());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("\n\n\n" + "-" + userRepository.findByEmail("miguel@gmail.com").getName() + "-" + auth.getName());
         String email = auth.getName(); //get logged in username
         String name = "LOGIN";
         if (userRepository.findByEmail(email) != null) {
@@ -212,9 +211,13 @@ public class SesionController {
         model.addAttribute("estudiante", (request.isUserInRole("STUDENT") ||
                 request.isUserInRole("ADMIN")));
         model.addAttribute("username", name);
-        System.out.println("\n\n\n" + email + "-" + name + auth.getName());
 
-        model.addAttribute("categorias", categoryRepository.findAll());//Vuelve a cargar las categorías
+        //model.addAttribute("categorias", categoryRepository.findAll());//Vuelve a cargar las categorías
+	     //Page<Category> categorias = categoryRepository.findByUserAndStatus(userRepository.fin, "Recogido", new PageRequest(0,10*(oldpage+1)));
+	     Page<Category> categorias = categoryRepository.findAll(new PageRequest(0,10*(oldpage+1)));
+	     
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("nextOldPage",oldpage+1);
         model.addAttribute("intervalos", intervalRepository.findAll());//Vuelve a cargar los intervalos
         model.addAttribute("eventos", eventRepository.findAll());//Vuelve a cargar los eventos
     }
