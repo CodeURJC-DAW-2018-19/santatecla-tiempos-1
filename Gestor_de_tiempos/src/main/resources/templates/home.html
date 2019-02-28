@@ -196,7 +196,33 @@
 														{{#intervalos}}
 														<tr>
 															<td style="width: 10% !important">{{-index}}</td>
+															{{#estudiante}}
+															<td style="width: 30% !important"><a data-toggle="modal" data-target="#showTimeModal{{idInterval}}" href="#">{{name}}</a></td>
+															<!--Popup SHOW Time-->
+															<div class="modal fade" id="showTimeModal{{idInterval}}" tabindex="-1" role="dialog">
+																<div class="modal-dialog modal-signup" role="document">
+																	<div class="modal-content">
+																		<div class="card card-signup card-plain">
+																			<div class="modal-header">
+																				<h5 class="modal-title card-title">Show
+																					Interval: {{name}} </h5>
+																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																					<i class="material-icons">clear</i>
+																				</button>
+																			</div>
+																			<div class="modal-body">
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															{{/estudiante}}
+															{{^estudiante}}
 															<td style="width: 30% !important">{{name}}</td>
+															{{/estudiante}}
+
+															
 															<td style="width: 25% !important">{{start}}</td>
 															<td style="width: 25% !important">{{end}}</td>
 
