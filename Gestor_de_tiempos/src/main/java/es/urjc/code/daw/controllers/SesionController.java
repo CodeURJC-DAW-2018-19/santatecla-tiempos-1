@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
+import es.urjc.code.daw.interval.Interval;
 import es.urjc.code.daw.interval.IntervalRepository;
 import es.urjc.code.daw.user.User;
 import es.urjc.code.daw.user.UserRepository;
@@ -40,15 +41,17 @@ public class SesionController {
 
     @RequestMapping(value = "/home", method = {RequestMethod.GET, RequestMethod.POST})
     public String root(Model model, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage) {
-        init(model, request, categorypage,eventpage);
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+	@RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        init(model, request, categorypage,eventpage,intervalpage);
         return "home";
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage) {
-        init(model, request, categorypage,eventpage);
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+	@RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        init(model, request, categorypage,eventpage,intervalpage);
 
         return "home";
     }
@@ -67,8 +70,9 @@ public class SesionController {
 
     @RequestMapping(value = "/addUser")
     public String addUser(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage) {
-        init(model, request, categorypage,eventpage);
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+	@RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        init(model, request, categorypage,eventpage,intervalpage);
 
 
         User NewUser = new User(name, email, password, "ROLE_STUDENT");
@@ -79,9 +83,8 @@ public class SesionController {
 
     //Método que inicializa la bbdd de toda la página
     //Ir añadiendo campos
-    public  void init(Model model, HttpServletRequest request,
-    		@RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-    Integer eventpage){
+    public  void init(Model model, HttpServletRequest request,Integer categorypage,
+    Integer eventpage, Integer intervalpage){
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
         model.addAttribute("token", token.getToken());
 
@@ -102,10 +105,12 @@ public class SesionController {
         //Page<Category> categorias = categoryRepository.findByUserAndStatus(userRepository.fin, "Recogido", new PageRequest(0,10*(categorypage+1)));
         Page<Category> categories = categoryRepository.findAll(new PageRequest(0, 10 * (categorypage + 1)));
         Page<Event> events = eventRepository.findAll(new PageRequest(0, 10 * (eventpage + 1)));
+        Page<Interval> intervals = intervalRepository.findAll(new PageRequest(0, 10 * (intervalpage + 1)));
 
         model.addAttribute("categorias", categories);
         model.addAttribute("nextCategoryPage", categorypage + 1);
-        model.addAttribute("intervalos", intervalRepository.findAll());//Load again the intervals.
+        model.addAttribute("intervalos", intervals);//Load again the intervals.
+        model.addAttribute("nextIntervalPage", intervalpage + 1);
         model.addAttribute("eventos",events);//Load again.
         model.addAttribute("nextEventPage", eventpage + 1);
         model.addAttribute("categoryList", categoryRepository.findAllByOrderByIdCategoryAsc()); //Load the list of categories assigned to the events.
