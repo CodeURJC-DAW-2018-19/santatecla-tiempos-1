@@ -24,7 +24,7 @@ public class Event
     @Column()
     private String name;
 
-    @Column
+    @Column (length = 429496729)
     private String eventPhoto;
     @Column(columnDefinition = "")
     private String eventWiki;
