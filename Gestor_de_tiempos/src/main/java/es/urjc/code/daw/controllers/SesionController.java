@@ -2,8 +2,10 @@ package es.urjc.code.daw.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,6 +45,7 @@ public class SesionController {
     private  EventRepository eventRepository;
 
     private List<Interval> intervaltabs=new ArrayList<Interval>();
+    private Set<Interval> hijos = new HashSet<Interval>();
     //Services
 
     @Autowired
@@ -228,7 +231,9 @@ public class SesionController {
     @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
     @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
     	System.out.println("\nLLEGA\n");
+    	hijos.clear();
         intervaltabs.add(intervalRepository.findOne(idInterval));
+        hijos.addAll(intervalRepository.findByIdInterval(idInterval).getChildrens());
     	System.out.println("\nLLEGA\n");
 
         init(model, request, categorypage,eventpage,intervalpage);
@@ -247,6 +252,7 @@ public class SesionController {
     	        iter.remove();
     	    }
     	}
+    	hijos.clear();
        // intervaltabs.add(intervalRepository.findOne(idInterval));
     	System.out.println("\nLLEGA\n");
 
@@ -320,6 +326,7 @@ System.out.print("\n"+events.getTotalPages()+"\nhhh"+intervals.getTotalPages()+"
         model.addAttribute("showmoreinterval", showmoreinterval);
        // intervaltabs=intervalRepository.findAll();
         model.addAttribute("intervaltabs", intervaltabs);
+        model.addAttribute("hijos", hijos);
         System.out.print("\n"+111+"\n");
 
         System.out.print("\n"+222+"\n");
