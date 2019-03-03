@@ -1,5 +1,8 @@
 package es.urjc.code.daw.controllers;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import es.urjc.code.daw.event.Event;
@@ -13,7 +16,10 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import es.urjc.code.daw.EncoderDecoderBase64;
 import es.urjc.code.daw.category.Category;
 import es.urjc.code.daw.category.CategoryRepository;
 import es.urjc.code.daw.interval.Interval;
@@ -34,6 +40,7 @@ public class SesionController {
     @Autowired
     private  EventRepository eventRepository;
 
+    private List<Interval> intervaltabs=intervalRepository.findAll();
     //Services
 
     @Autowired
@@ -57,12 +64,156 @@ public class SesionController {
     }
 
    
+    /*
+    START CATEGORY
+     */
+
+    @RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
+    public String newCategory(Model model, @RequestParam String categoryName, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        Category newCategory = new Category(categoryName);
+        categoryRepository.save(newCategory);
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/deleteCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteCategory(Model model, HttpServletRequest request, @PathVariable long idCategory, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        categoryRepository.delete(idCategory);
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/setCategory{idCategory}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String setCategory(Model model, HttpServletRequest request, @PathVariable long idCategory, @RequestParam String categoryName, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        Category category = new Category(categoryName);
+        category.setIdCategory(idCategory);
+        categoryRepository.save(category);
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
 
     /*
     END CATEGORY
      */
 
-    
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET})
+    public String newEvent(Model model, Event event, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        init(model, request, categorypage, eventpage, intervalpage);
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
+    public String newEvent(Model model, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage
+                           ) {
+
+        //Set the photo for the event.
+        if (!multipartFile.isEmpty()) {
+            //String rootPath = "C://Temp//uploads";
+            try {
+                byte[] bytesPhoto = multipartFile.getBytes();
+                //Path fullPath = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
+                //Files.write(fullPath, bytes);
+                redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
+                event.setEventPhoto(EncoderDecoderBase64.Encode(bytesPhoto));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        eventRepository.save(event);
+        init(model, request, categorypage, eventpage, intervalpage);
+        return "redirect:/home";
+    }
+
+
+    @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+                              @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+                              @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        eventRepository.delete(idEvent);
+        init(model, request, categorypage, eventpage, intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        Event event = new Event(eventName);
+        event.setIdEvent(idEvent);
+        eventRepository.save(event);
+        init(model, request, categorypage, eventpage, intervalpage);
+        return "home";
+    }
+
+    /*
+    START INTERVAL
+     */
+
+    @RequestMapping(value = "/addInterval", method = {RequestMethod.GET, RequestMethod.POST})
+    public String newInterval(Model model, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+
+
+        Interval newInterval = new Interval(intervalName, startdate, enddate);
+        intervalRepository.save(newInterval);
+
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/deleteInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteInterval(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        intervalRepository.delete(idInterval);
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/setInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String setInterval(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+        //intervalRepository.findOne(idInterval).setName(intervalName);
+        //intervalRepository.findOne(idInterval).setStart(startdate);
+        //intervalRepository.findOne(idInterval).setEnd(enddate);
+        Interval newInterval = new Interval(intervalName, startdate, enddate);
+        newInterval.setIdInterval(idInterval);
+        intervalRepository.save(newInterval);
+        init(model, request, categorypage,eventpage,intervalpage);
+        return "home";
+    }
+
+    @RequestMapping(value = "/openintervaltab{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String openintervaltab(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+
+    	System.out.println("\nLLEGA\n");
+        intervaltabs.add(intervalRepository.findOne(idInterval));
+    	System.out.println("\nLLEGA\n");
+
+        init(model, request, categorypage,eventpage,intervalpage);
+    	System.out.println("\nLLEGA\n");
+
+        return "home";
+    }
+    /*
+    END INTERVAL
+     */
+
    
 
     
@@ -122,6 +273,9 @@ System.out.print("\n"+events.getTotalPages()+"\nhhh"+intervals.getTotalPages()+"
         model.addAttribute("showmoreevent", showmoreevent);
         Boolean showmoreinterval=intervalpage<intervals.getTotalPages();
         model.addAttribute("showmoreinterval", showmoreinterval);
+        
+       // intervaltabs=intervalRepository.findAll();
+        model.addAttribute("intervaltabs", intervaltabs);
     }
 
 }

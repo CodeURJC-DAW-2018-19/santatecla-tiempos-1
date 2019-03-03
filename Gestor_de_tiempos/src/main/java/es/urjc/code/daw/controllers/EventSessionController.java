@@ -32,58 +32,5 @@ public class EventSessionController {
     private SesionController session;
 
 
-    @RequestMapping(value = "/addEvent", method = {RequestMethod.GET})
-    public String newEvent(Model model, Event event, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
-                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
-        session.init(model, request, categorypage, eventpage, intervalpage);
-        return "redirect:/home";
-    }
-
-    @RequestMapping(value = "/addEvent", method = {RequestMethod.POST})
-    public String newEvent(Model model, Event event, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
-                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage
-                           ) {
-
-        //Set the photo for the event.
-        if (!multipartFile.isEmpty()) {
-            //String rootPath = "C://Temp//uploads";
-            try {
-                byte[] bytesPhoto = multipartFile.getBytes();
-                //Path fullPath = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
-                //Files.write(fullPath, bytes);
-                redirectAttributes.addFlashAttribute("info", "Imagen subida correctamente ' " + multipartFile.getOriginalFilename() + "'");
-                event.setEventPhoto(EncoderDecoderBase64.Encode(bytesPhoto));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        eventService.save(event);
-        session.init(model, request, categorypage, eventpage, intervalpage);
-        return "redirect:/home";
-    }
-
-
-    @RequestMapping(value = "/deleteEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-                              @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
-                              @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
-        eventService.delete(idEvent);
-        session.init(model, request, categorypage, eventpage, intervalpage);
-        return "home";
-    }
-
-    @RequestMapping(value = "/setEvent{idEvent}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setEvent(Model model, HttpServletRequest request, @PathVariable long idEvent, @RequestParam String eventName, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
-                           @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
-                           @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
-        Event event = new Event(eventName);
-        event.setIdEvent(idEvent);
-        eventService.save(event);
-        session.init(model, request, categorypage, eventpage, intervalpage);
-        return "home";
-    }
-
+    
 }
