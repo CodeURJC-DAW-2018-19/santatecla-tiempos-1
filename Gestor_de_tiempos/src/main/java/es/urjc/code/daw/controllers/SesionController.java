@@ -40,7 +40,7 @@ public class SesionController {
     @Autowired
     private  EventRepository eventRepository;
 
-    private List<Interval> intervaltabs=intervalRepository.findAll();
+    private List<Interval> intervaltabs;
     //Services
 
     @Autowired
