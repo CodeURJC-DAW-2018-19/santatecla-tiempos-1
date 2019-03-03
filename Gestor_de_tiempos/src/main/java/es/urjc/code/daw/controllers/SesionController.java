@@ -2,6 +2,7 @@ package es.urjc.code.daw.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -228,6 +229,25 @@ public class SesionController {
     @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
     	System.out.println("\nLLEGA\n");
         intervaltabs.add(intervalRepository.findOne(idInterval));
+    	System.out.println("\nLLEGA\n");
+
+        init(model, request, categorypage,eventpage,intervalpage);
+    	System.out.println("\nLLEGA\n");
+
+        return "home";
+    }
+    @RequestMapping(value = "/closeintervaltab{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String closeintervaltab(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
+    @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
+    	System.out.println("\nLLEGA\n");
+    	for (Iterator<Interval> iter = intervaltabs.listIterator(); iter.hasNext(); ) {
+    	    Interval a = iter.next();
+    	    if (a.getIdInterval()==idInterval) {
+    	        iter.remove();
+    	    }
+    	}
+       // intervaltabs.add(intervalRepository.findOne(idInterval));
     	System.out.println("\nLLEGA\n");
 
         init(model, request, categorypage,eventpage,intervalpage);
