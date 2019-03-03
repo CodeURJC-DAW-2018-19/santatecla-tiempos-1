@@ -2,6 +2,10 @@ package es.urjc.code.daw.interval;
 
 
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +21,7 @@ public class Interval{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idInterval;
 
+	
 /*	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
@@ -27,7 +32,16 @@ public class Interval{
 	private String name;
 	private String startdate;
 	private String enddate;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name="parent_id")
+	private Interval parent;
 
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "parent")
+	private Set<Interval> childrens = new HashSet<Interval>();
+	
+	
 	public Interval() {
 	}
 	public Interval(String name,String startdate,String enddate) {
@@ -35,9 +49,29 @@ public class Interval{
 		this.name = name;
 		this.startdate=startdate;
 		this.enddate=enddate;
-
 	}
-
+	
+	
+	public Set<Interval> getChildrens() {
+		return childrens;
+	}
+	
+	public void setChildrens(Set<Interval> childrens) {
+		this.childrens = childrens;
+	}
+	
+	public void addChild(Interval child) {
+		  this.childrens.add(child);
+		 }
+	
+	public Interval getParent() {
+		return parent;
+	}
+	
+	public void setParent(Interval parent) {
+		this.parent = parent;
+	}
+	
 
 	public Long getIdInterval() {
 		return this.idInterval;
@@ -69,8 +103,25 @@ public class Interval{
 	@JoinTable(name="", joinColumns = @JoinColumn(name=""), inverseJoinColumns = @JoinColumn(name=""))
 	
 	*/
+	/*@Override
+	public boolean equals(Object emp) {
+		if(emp instanceof Interval) {
+			Interval interval = (Interval)emp;
+			
+			if(this.name.equals(interval.getName()))
+				return true;
+		}
+
+		return false;
+	}
+	@Override
+	public int hashCode() {
+	
+		return this.name.hashCode();
+	}*/
+	
 	@Override
 	public String toString() {
-		return "Interval{" + "idInterval=" + idInterval + ", name='" + name + '\''+startdate.toString()+"::"+enddate.toString()+'}';
+		return "Interval{" + "idInterval=" + idInterval + ", parentId='" + parent == null ? null : parent.getIdInterval() + ", name='" + name + '\''+startdate.toString()+"::"+enddate.toString()+'}';
 	}
 }

@@ -74,6 +74,8 @@ public class DataBaseLoader {
         		categoryRepository.save(cats[i]);
         }
         //INTERVAL
+        Interval padre1 = new Interval("Intervalo Padre 1","01/01/1989","01/01/1996");
+        intervalRepository.save(padre1);
         Interval [] intervals = {
         		new Interval("Intervalo 1","23/12/1989","23/11/1994"),
         		new Interval("Intervalo 2","2/10/1999","3/11/1995"),
@@ -84,7 +86,22 @@ public class DataBaseLoader {
         };
         for(int i=0;i<intervals.length;i++){
         	if (intervalRepository.findByName(intervals[i].getName())==null)
+                intervals[i].setParent(padre1);
+        		//padre1.addChild(intervals[i]);
         		intervalRepository.save(intervals[i]);
+        }
+        
+        Interval padre2 = new Interval("Intervalo Padre 2","01/01/2000","01/01/2005");
+        intervalRepository.save(padre2);
+        Interval [] intervals2 = {
+        		new Interval("Intervalo 7","23/12/2001","23/11/2004"),
+        		new Interval("Intervalo 8","2/10/2003","3/11/2003")
+        };
+        for(int i=0;i<intervals2.length;i++){
+        	if (intervalRepository.findByName(intervals2[i].getName())==null)
+                intervals2[i].setParent(padre2);
+        		//padre1.addChild(intervals[i]);
+        		intervalRepository.save(intervals2[i]);
         }
 
         //EVENTS
