@@ -114,7 +114,14 @@ public class SesionController {
         model.addAttribute("eventos",events);//Load again.
         model.addAttribute("nextEventPage", eventpage + 1);
         model.addAttribute("categoryList", categoryRepository.findAllByOrderByIdCategoryAsc()); //Load the list of categories assigned to the events.
-
+        
+        Boolean showmorecategory=categorypage<categories.getTotalPages();
+        model.addAttribute("showmorecategory", showmorecategory);
+System.out.print("\n"+events.getTotalPages()+"\nhhh"+intervals.getTotalPages()+"\nhhh");
+        Boolean showmoreevent=eventpage<events.getTotalPages();
+        model.addAttribute("showmoreevent", showmoreevent);
+        Boolean showmoreinterval=intervalpage<intervals.getTotalPages();
+        model.addAttribute("showmoreinterval", showmoreinterval);
     }
 
 }

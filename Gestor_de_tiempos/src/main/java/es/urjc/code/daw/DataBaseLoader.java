@@ -95,7 +95,12 @@ public class DataBaseLoader {
         intervalRepository.save(padre2);
         Interval [] intervals2 = {
         		new Interval("Intervalo 7","23/12/2001","23/11/2004"),
-        		new Interval("Intervalo 8","2/10/2003","3/11/2003")
+        		new Interval("Intervalo 8","2/10/2003","3/11/2003"),
+        		new Interval("Intervalo 9","2/10/2003","3/11/2003"),
+        		new Interval("Intervalo 10","2/10/2003","3/11/2003"),
+        		new Interval("Intervalo 11","2/10/2003","3/11/2003"),
+        		new Interval("Intervalo 12","2/10/2003","3/11/2003"),
+        		new Interval("Intervalo 13","2/10/2003","3/11/2003")
         };
         for(int i=0;i<intervals2.length;i++){
         	if (intervalRepository.findByName(intervals2[i].getName())==null)
@@ -112,6 +117,12 @@ public class DataBaseLoader {
         		new Event("Evento 5","Wiki 5", "Date 5"),
         		new Event("Evento 6","Wiki 6", "Date 6"),
         		new Event("Evento 7","Wiki 7", "Date 7"),
+        		new Event("Evento 8","Wiki 7", "Date 7"),
+        		new Event("Evento 9","Wiki 7", "Date 7"),
+        		new Event("Evento 10","Wiki 7", "Date 7"),
+        		new Event("Evento 11","Wiki 7", "Date 7"),
+        		new Event("Evento 12","Wiki 7", "Date 7"),
+        		new Event("Evento 13","Wiki 7", "Date 7")
         };
         for(int i=0;i<events.length;i++){
         	if (eventRepository.findByName(events[i].getName())==null)
