@@ -13,10 +13,15 @@
                     <p>Tiempo</p>
                 </a></li>
             {{#intervaltabs}}
-            <li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">close</i>
-                    <p>{{name}}</p>
-                    <button class="btn"><i class="fa fa-close"></i></button>
-                </a></li>
+            <li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">query_builder</i>
+                    
+                    <p>{{name}}
+                    	<form id="myForm" action="/closeintervaltab{{idInterval}}">
+                    		<span class="close" onclick='this.parentNode.submit(); return false;'>&times;</span>
+                    	</form>
+                    </p>
+                    
+                </a>
                 
             {{/intervaltabs}}
         </ul>

@@ -32,12 +32,8 @@
 												{{#estudiante}}
 												<td style="width: 30% !important">
 													<form id="myForm" action="/openintervaltab{{idInterval}}">
-														<button type="submit" title="Remove"
-															class="btn btn-danger btn-link btn-sm">
-															<i class="material-icons">delete</i>
-														</button>
-														<a
-															class="submit" href="#">{{name}}</a>
+														<a href='#' onclick='this.parentNode.submit(); return false;'>{{name}}</a>
+														
 													</form>
 												</td>
 												<!--Popup SHOW Time-->
