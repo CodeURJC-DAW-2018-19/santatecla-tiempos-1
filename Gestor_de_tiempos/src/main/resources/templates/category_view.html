@@ -106,6 +106,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button onclick="myFunction()" class="btn btn-primary btn-link mostrarmas">Pestaña</button>
+                        </div>
                         {{#showmorecategory}}
                         <div class="col-md-4">
                             <button onclick="location.href='/?categorypage={{nextCategoryPage}}';" class="btn btn-primary btn-link mostrarmas">Mostrar
@@ -156,3 +159,17 @@
     </div>
 </div>
 {{/admin}}
+<script>
+function myFunction() {
+  var node = document.createElement("LI");
+  var textnode = document.createTextNode("Water");
+  node.appendChild(textnode);
+  document.getElementById("sidebar").appendChild(node);
+  $(node).attr('id', 'node');
+  $(node).addClass("nav-item nav-link material-icons");
+  $("#node").click(function(){ 
+	  goTo('view'); 
+  });
+  $(node).attr("href", "#")
+}
+</script>
