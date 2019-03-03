@@ -104,6 +104,14 @@
 																						class="form-control datetimepicker" value=""
 																						placeholder="Fecha Fin">
 																				</div>
+																				<div class="form-group col-md-12">
+                                													<select name="parentId">
+                                														<option value="-1">Sin padre</option>
+                                    													{{#intervalos}}
+                                        												<option value="{{idInterval}}">{{name}}</option>
+                                    													{{/intervalos}}
+                                													</select>
+                            													</div>
 
 																			</div>
 																			<button type="submit" class="btn btn-primary">ACEPTAR</button>

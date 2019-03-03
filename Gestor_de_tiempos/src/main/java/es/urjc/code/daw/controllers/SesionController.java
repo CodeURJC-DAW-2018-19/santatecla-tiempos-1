@@ -191,7 +191,7 @@ public class SesionController {
     }
 
     @RequestMapping(value = "/setInterval{idInterval}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String setInterval(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    public String setInterval(Model model, HttpServletRequest request, @PathVariable long idInterval, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam Long parentId, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
     @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
     @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
         //intervalRepository.findOne(idInterval).setName(intervalName);
@@ -199,6 +199,10 @@ public class SesionController {
         //intervalRepository.findOne(idInterval).setEnd(enddate);
         Interval newInterval = new Interval(intervalName, startdate, enddate);
         newInterval.setIdInterval(idInterval);
+        if (parentId!=-1) {
+        	Interval padre = intervalRepository.findByIdInterval(parentId);
+        	newInterval.setParent(padre);
+        	}
         intervalRepository.save(newInterval);
         init(model, request, categorypage,eventpage,intervalpage);
         return "home";
