@@ -122,6 +122,6 @@ public class Interval{
 	
 	@Override
 	public String toString() {
-		return "Interval{" + "idInterval=" + idInterval + ", parentId='" + parent == null ? null : parent.getIdInterval() + ", name='" + name + '\''+startdate.toString()+"::"+enddate.toString()+'}';
+		return "Interval{" + "idInterval=" + idInterval + ", name='" + name + '\''+startdate.toString()+"::"+enddate.toString()+'}';
 	}
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IntervalRepository extends JpaRepository<Interval, Long> {
 	Interval findByName(String name);
+	Interval findByIdInterval(Long idInterval);
 }

@@ -165,12 +165,16 @@ public class SesionController {
      */
 
     @RequestMapping(value = "/addInterval", method = {RequestMethod.GET, RequestMethod.POST})
-    public String newInterval(Model model, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
+    public String newInterval(Model model, @RequestParam String intervalName, @RequestParam String startdate, @RequestParam String enddate, @RequestParam Long parentId, HttpServletRequest request, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
     @RequestParam(name = "eventpage", required = false, defaultValue = "0") Integer eventpage,
     @RequestParam(name = "intervalpage", required = false, defaultValue = "0") Integer intervalpage) {
 
 
         Interval newInterval = new Interval(intervalName, startdate, enddate);
+        if (parentId!=-1) {
+    	Interval padre = intervalRepository.findByIdInterval(parentId);
+    	newInterval.setParent(padre);
+    	}
         intervalRepository.save(newInterval);
 
         init(model, request, categorypage,eventpage,intervalpage);
