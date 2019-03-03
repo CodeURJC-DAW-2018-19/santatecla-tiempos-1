@@ -1,7 +1,7 @@
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="img/bg.jpg">
     <div class="logo text-center">Gestor de Tiempos</div>
     <div class="sidebar-wrapper">
-        <ul class="nav">
+        <ul class="nav" id="sidebar">
             <li id="nav_category" class="nav-item active"><a class="nav-link" href="#" onclick="goTo('category')"> <i class="material-icons">
                         collections_bookmark </i>
                     <p>Categorías</p>
@@ -12,9 +12,12 @@
             <li id="nav_time" class="nav-item"><a class="nav-link" href="#" onclick="goTo('time')"> <i class="material-icons">timeline</i>
                     <p>Tiempo</p>
                 </a></li>
+            {{#intervaltabs}}
             <li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">close</i>
-                    <p>Vista Intervalo</p>
+                    <p>{{name}}</p>
+                    <button class="btn"><i class="fa fa-close"></i></button>
                 </a></li>
+            {{/intervaltabs}}
         </ul>
     </div>
 </div>
