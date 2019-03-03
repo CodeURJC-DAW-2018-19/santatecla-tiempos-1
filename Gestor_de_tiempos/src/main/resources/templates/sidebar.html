@@ -13,11 +13,10 @@
                     <p>Tiempo</p>
                 </a></li>
             {{#intervaltabs}}
-            <li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">query_builder</i>
-                    
-                    <p>{{name}}<span class="close">&times;</span></p>
-                    
-                </a>
+            <li id="nav_view" class="nav-item"><a class="nav-link" href="#" onclick="goTo('view')"> <i class="material-icons">close</i>
+                    <p>{{name}}</p>
+                    <button class="btn"><i class="fa fa-close"></i></button>
+                </a></li>
                 
             {{/intervaltabs}}
         </ul>
