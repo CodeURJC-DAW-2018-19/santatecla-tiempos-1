@@ -265,10 +265,6 @@ public class SesionController {
     END INTERVAL
      */
 
-   
-
-    
-
 
     @RequestMapping(value = "/addUser")
     public String addUser(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam(name = "categorypage", required = false, defaultValue = "0") Integer categorypage,
@@ -319,7 +315,7 @@ public class SesionController {
         
         Boolean showmorecategory=categorypage<categories.getTotalPages();
         model.addAttribute("showmorecategory", showmorecategory);
-System.out.print("\n"+events.getTotalPages()+"\nhhh"+intervals.getTotalPages()+"\nhhh");
+
         Boolean showmoreevent=eventpage<events.getTotalPages();
         model.addAttribute("showmoreevent", showmoreevent);
         Boolean showmoreinterval=intervalpage<intervals.getTotalPages();
@@ -327,9 +323,7 @@ System.out.print("\n"+events.getTotalPages()+"\nhhh"+intervals.getTotalPages()+"
        // intervaltabs=intervalRepository.findAll();
         model.addAttribute("intervaltabs", intervaltabs);
         model.addAttribute("hijos", hijos);
-        System.out.print("\n"+111+"\n");
 
-        System.out.print("\n"+222+"\n");
 
     }
 
