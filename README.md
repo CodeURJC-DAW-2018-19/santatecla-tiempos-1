@@ -47,8 +47,14 @@ https://trello.com/b/3hLVo1I0
 
 # Instalación y configuración del entorno de programación
 
+##Base de datos
+
 Se debe instalar mysql,configurarlo en las variables del path e inciarlo en el directorio del proyecto. Se lanzan las queries de la creación de la base de datos y tablas tras acceder desde ahí a mysql, y la query de inserción de datos. Posteriormente se ejecuta el aplication.java del proyecto, y se puede acceder ya con https://localhost:8433 a la aplicación.
 
+##Docker
+
+Para instalar Docker en el entorno primero hay que descargarlo, en nuestro caso, elegimos el entorno de linux para hacerlo usamos el siguiente enlace https://www.digitalocean.com/community/tutorials/como-instalar-y-usar-docker-en-ubuntu-16-04-es.
+Una vez se haya seguido los pasos, hay que configurar Docker.Para ello hay que asegurarse que el Daemon esta habilitado y configurado
 # Enlace a la documentación
 
 https://docs.google.com/document/d/1rWcAxrTCxYdzGzAHamFft_bQ4EsX8VsRZJQfyriQ8r0/edit
