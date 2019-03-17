@@ -1,0 +1,19 @@
+version: '3'
+services:
+  docker-mysql:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=santatecla
+  spring-boot-jpa-docker-webapp:
+    image: alvarorbaneja/daw:latest
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8443:8080
+    environment:
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=1234
+      - DATABASE_NAME=santatecla
+      - DATABASE_PORT=3306
