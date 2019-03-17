@@ -56,7 +56,9 @@ Se debe instalar mysql,configurarlo en las variables del path e inciarlo en el d
 Para instalar Docker en el entorno primero hay que descargarlo, en nuestro caso, elegimos el entorno de linux para hacerlo usamos el siguiente enlace https://www.digitalocean.com/community/tutorials/como-instalar-y-usar-docker-en-ubuntu-16-04-es.
 Una vez se haya seguido los pasos, hay que configurar Docker.Para ello hay que asegurarse que el Daemon esta habilitado y configurado.
 
+###Creación de la imágen del docker
 ![Creación de la imágen del docker](screenshots/Phase%201/crear%20imagen.jpeg)
+###Creación del docker_compose
 ![Creación del docker_compose](screenshots/Phase%201/crear%20imagen.jpeg)
 # Enlace a la documentación
 
